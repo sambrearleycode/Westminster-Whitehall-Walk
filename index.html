@@ -4,6 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Westminster Historical Walk: Power, People & Topography (1485–1603)</title>
+  
+  <!-- Accessibility Fonts: Atkinson Hyperlegible, Lexend, and OpenDyslexic CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Lexend:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/opendyslexic@1.0.3/open-dyslexic.css">
+
   <style>
     :root {
       --bg-cream: #FAF0E6;
@@ -17,7 +24,33 @@
       --border: #DDCFC0;
       --border-focus: #1B365D;
       --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font-current: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --line-height-current: 1.65;
+      --letter-spacing-current: 0.015em;
+      --word-spacing-current: normal;
+    }
+
+    /* Font Family States */
+    body.font-system {
+      --font-current: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    body.font-atkinson {
+      --font-current: 'Atkinson Hyperlegible', 'Lexend', sans-serif;
+    }
+    body.font-dyslexic {
+      --font-current: 'OpenDyslexic', 'Atkinson Hyperlegible', sans-serif;
+    }
+
+    /* Text Spacing States */
+    body.spacing-standard {
+      --line-height-current: 1.65;
+      --letter-spacing-current: 0.015em;
+      --word-spacing-current: normal;
+    }
+    body.spacing-spacious {
+      --line-height-current: 1.85;
+      --letter-spacing-current: 0.05em;
+      --word-spacing-current: 0.12em;
     }
 
     * {
@@ -29,10 +62,11 @@
     body {
       background-color: var(--bg-cream);
       color: var(--text-main);
-      font-family: var(--font-stack);
+      font-family: var(--font-current);
       font-size: 16px;
-      line-height: 1.65;
-      letter-spacing: 0.015em;
+      line-height: var(--line-height-current);
+      letter-spacing: var(--letter-spacing-current);
+      word-spacing: var(--word-spacing-current);
       padding-top: 60px;
       padding-bottom: 80px;
       -webkit-font-smoothing: antialiased;
@@ -50,40 +84,54 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 16px;
+      padding: 0 14px;
       z-index: 1000;
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
 
+    .top-bar-left {
+      display: flex;
+      flex-direction: column;
+      max-width: 60%;
+    }
+
     .top-bar-title {
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 700;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.02em;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 65%;
     }
 
     .top-bar-progress {
-      font-size: 0.85rem;
+      font-size: 0.78rem;
       color: var(--gold);
       font-weight: 600;
     }
 
-    .menu-btn {
+    .top-bar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header-btn {
       background: none;
       border: 1px solid var(--gold);
       color: var(--gold);
-      padding: 6px 12px;
+      padding: 6px 10px;
       border-radius: 4px;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 600;
       cursor: pointer;
-      min-height: 38px;
+      min-height: 36px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
 
-    /* Main Content Container */
+    /* Main Container */
     .container {
       max-width: 760px;
       margin: 0 auto;
@@ -99,10 +147,11 @@
       border: 1px solid var(--border);
     }
 
+    /* Stop Header & Navigation Anchor */
     .stop-header {
       margin-bottom: 16px;
       border-bottom: 2px solid var(--crimson);
-      padding-bottom: 8px;
+      padding-bottom: 12px;
     }
 
     .stop-badge {
@@ -119,17 +168,62 @@
     }
 
     .stop-title {
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       color: var(--navy);
       line-height: 1.3;
+      margin-bottom: 10px;
     }
 
-    /* Image Gallery & Fallbacks */
+    /* Progress & Walking Navigation Bar */
+    .nav-anchor-bar {
+      background: #F4ECE1;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .nav-metric {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .nav-metric-icon {
+      font-size: 1.1rem;
+    }
+
+    .map-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--navy);
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 4px;
+      transition: background-color 0.15s ease;
+    }
+
+    .map-link-btn:hover {
+      background: var(--crimson);
+    }
+
+    /* Image Gallery */
     .gallery {
       display: flex;
       flex-direction: column;
       gap: 16px;
-      margin-bottom: 20px;
+      margin: 18px 0;
     }
 
     .image-wrapper {
@@ -158,7 +252,7 @@
       font-style: italic;
     }
 
-    /* Key Concept Callout */
+    /* Key Concept Box */
     .concept-box {
       background: var(--gold-light);
       border-left: 4px solid var(--gold);
@@ -213,7 +307,83 @@
       top: 5px;
     }
 
-    /* Collapsible Accordions (Art History & Politics) */
+    /* Glossary Popover Links */
+    .glossary-term {
+      border-bottom: 2px dotted var(--navy);
+      color: var(--navy);
+      font-weight: 600;
+      cursor: pointer;
+      background-color: rgba(27, 54, 93, 0.07);
+      padding: 1px 4px;
+      border-radius: 3px;
+      transition: background-color 0.15s ease;
+    }
+
+    .glossary-term:hover, .glossary-term:active {
+      background-color: rgba(197, 160, 89, 0.35);
+    }
+
+    /* Floating Glossary Popover Modal */
+    .glossary-popover {
+      display: none;
+      position: fixed;
+      bottom: 74px;
+      left: 16px;
+      right: 16px;
+      max-width: 520px;
+      margin: 0 auto;
+      background: #FFFFFF;
+      border: 2px solid var(--navy);
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      padding: 16px;
+      z-index: 2500;
+      animation: popSlideUp 0.2s ease-out;
+    }
+
+    .glossary-popover.active {
+      display: block;
+    }
+
+    @keyframes popSlideUp {
+      from { transform: translateY(12px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .glossary-popover-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 4px;
+    }
+
+    .glossary-popover-term {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--crimson);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .glossary-popover-close {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      line-height: 1;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0 4px;
+    }
+
+    .glossary-popover-def {
+      font-size: 0.9rem;
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    /* Accordions (Art History & Politics) */
     details {
       background: #FAF7F2;
       border: 1px solid var(--border);
@@ -288,7 +458,7 @@
       letter-spacing: 0.03em;
     }
 
-    /* Scribe Interactive Note-taking Area */
+    /* Scribe Interactive Note-Taking & Audio Dictation */
     .scribe-box {
       margin-top: 20px;
       background: #FDFBF7;
@@ -301,7 +471,15 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .scribe-header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .scribe-title {
@@ -309,6 +487,35 @@
       font-size: 0.9rem;
       color: var(--crimson);
       text-transform: uppercase;
+    }
+
+    /* Dictation Button & Pulsing Record State */
+    .dictate-btn {
+      background: #FFFFFF;
+      border: 1px solid var(--navy);
+      color: var(--navy);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s ease;
+    }
+
+    .dictate-btn.recording {
+      background: var(--crimson);
+      border-color: var(--crimson);
+      color: #FFFFFF;
+      animation: pulseRecord 1.4s infinite;
+    }
+
+    @keyframes pulseRecord {
+      0% { box-shadow: 0 0 0 0 rgba(139, 30, 30, 0.6); }
+      70% { box-shadow: 0 0 0 8px rgba(139, 30, 30, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(139, 30, 30, 0); }
     }
 
     .scribe-status {
@@ -319,10 +526,12 @@
 
     textarea {
       width: 100%;
-      min-height: 110px;
-      font-family: var(--font-stack);
+      min-height: 120px;
+      font-family: var(--font-current);
       font-size: 0.95rem;
-      line-height: 1.5;
+      line-height: var(--line-height-current);
+      letter-spacing: var(--letter-spacing-current);
+      word-spacing: var(--word-spacing-current);
       padding: 10px;
       border: 1px solid var(--border);
       border-radius: 4px;
@@ -337,7 +546,7 @@
       box-shadow: 0 0 0 2px rgba(27, 54, 93, 0.15);
     }
 
-    /* Fixed Bottom Navigation Bar */
+    /* Bottom Fixed Navigation Bar */
     .bottom-bar {
       position: fixed;
       bottom: 0;
@@ -384,13 +593,13 @@
       color: #111111;
     }
 
-    /* Slide-out Menu Drawer */
+    /* Slide-out Drawer */
     .drawer {
       position: fixed;
       top: 0;
       right: -100%;
-      width: 85%;
-      max-width: 360px;
+      width: 88%;
+      max-width: 380px;
       height: 100%;
       background: var(--card-bg);
       box-shadow: -4px 0 16px rgba(0,0,0,0.25);
@@ -430,7 +639,55 @@
     .drawer-content {
       flex: 1;
       overflow-y: auto;
-      padding: 12px;
+      padding: 14px;
+    }
+
+    /* Accessibility Controls Panel inside Drawer */
+    .accessibility-card {
+      background: var(--gold-light);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px;
+      margin-bottom: 16px;
+    }
+
+    .accessibility-card-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--navy);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .control-row {
+      margin-bottom: 10px;
+    }
+
+    .control-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .control-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .control-select {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: #FFFFFF;
+      font-size: 0.88rem;
+      color: var(--text-main);
+      font-family: inherit;
     }
 
     .stop-menu-item {
@@ -439,7 +696,6 @@
       justify-content: space-between;
       padding: 10px 12px;
       border-bottom: 1px solid var(--border);
-      text-decoration: none;
       color: var(--text-main);
       font-size: 0.9rem;
       border-radius: 4px;
@@ -454,7 +710,7 @@
     }
 
     .drawer-footer {
-      padding: 16px;
+      padding: 14px;
       border-top: 1px solid var(--border);
       background: #FAF7F2;
     }
@@ -473,7 +729,7 @@
       display: block;
     }
 
-    /* Modal Overlay for Export */
+    /* Modal Overlay */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -548,21 +804,36 @@
     }
   </style>
 </head>
-<body>
+<body class="font-system spacing-standard">
 
-  <!-- Top Fixed Bar -->
+  <!-- Fixed Header -->
   <header class="top-bar">
-    <div class="top-bar-title" id="barTitle">1. Charing Cross Station</div>
-    <div class="top-bar-progress" id="barProgress">Stop 1 of 13</div>
-    <button class="menu-btn" onclick="toggleDrawer()">Menu ☰</button>
+    <div class="top-bar-left">
+      <div class="top-bar-title" id="barTitle">1. Charing Cross Station</div>
+      <div class="top-bar-progress" id="barProgress">Stop 1 of 13</div>
+    </div>
+    <div class="top-bar-actions">
+      <button class="header-btn" onclick="toggleDrawer()" title="Accessibility & Tour Settings">Aa / Menu ☰</button>
+    </div>
   </header>
 
-  <!-- Main Tour Card Container -->
+  <!-- Main Content Card -->
   <main class="container">
     <article class="card">
       <div class="stop-header">
         <span class="stop-badge" id="stopBadge">Stop 1</span>
         <h1 class="stop-title" id="stopTitle">Charing Cross Station & The Strand</h1>
+
+        <!-- Progress & Navigation Anchor Bar -->
+        <div class="nav-anchor-bar">
+          <div class="nav-metric">
+            <span class="nav-metric-icon">🚶</span>
+            <span id="navPacingText">Next: York Steps (~280m • ~4 mins)</span>
+          </div>
+          <a class="map-link-btn" id="navMapLink" href="#" target="_blank" rel="noopener">
+            <span>📍 Google Maps Directions</span>
+          </a>
+        </div>
       </div>
 
       <!-- Image Area -->
@@ -596,16 +867,31 @@
         <p id="debateText">Debate prompt text...</p>
       </div>
 
-      <!-- Scribe Box (Group Notes) -->
+      <!-- Fieldwork Scribe Box with Audio Dictation -->
       <div class="scribe-box">
         <div class="scribe-header">
-          <span class="scribe-title">Fieldwork Scribe</span>
+          <div class="scribe-header-left">
+            <span class="scribe-title">Fieldwork Scribe</span>
+            <button type="button" class="dictate-btn" id="dictateBtn" onclick="toggleDictation()" title="Tap to start/stop speech transcription">
+              <span id="micIcon">🎙️</span>
+              <span id="dictateText">Dictate</span>
+            </button>
+          </div>
           <span class="scribe-status" id="saveStatus">Auto-saved to device</span>
         </div>
-        <textarea id="scribeNotes" placeholder="Record group discussion, physical observations, and debate arguments here..." oninput="saveCurrentNote()"></textarea>
+        <textarea id="scribeNotes" placeholder="Record group discussion, physical observations, or speak using the Dictate button above..." oninput="saveCurrentNote()"></textarea>
       </div>
     </article>
   </main>
+
+  <!-- Glossary Popover Container (Tap-to-view on mobile) -->
+  <aside class="glossary-popover" id="glossaryPopover">
+    <div class="glossary-popover-header">
+      <span class="glossary-popover-term" id="popoverTerm">Term</span>
+      <button class="glossary-popover-close" onclick="closeGlossaryPopover()">&times;</button>
+    </div>
+    <div class="glossary-popover-def" id="popoverDef">Definition goes here.</div>
+  </aside>
 
   <!-- Bottom Navigation Bar -->
   <nav class="bottom-bar">
@@ -617,12 +903,40 @@
   <!-- Slide-out Menu Drawer -->
   <aside class="drawer" id="menuDrawer">
     <div class="drawer-header">
-      <div class="drawer-title">Tour Stops (13)</div>
+      <div class="drawer-title">Navigation & Tools</div>
       <button class="close-btn" onclick="toggleDrawer()">×</button>
     </div>
-    <div class="drawer-content" id="drawerList"></div>
+    <div class="drawer-content">
+
+      <!-- Accessibility Settings Card -->
+      <div class="accessibility-card">
+        <div class="accessibility-card-title">⚙️ Reading & Accessibility</div>
+        
+        <div class="control-row">
+          <label class="control-label" for="fontSelect">Font Family</label>
+          <select class="control-select" id="fontSelect" onchange="applyFont(this.value)">
+            <option value="font-system">System Default</option>
+            <option value="font-atkinson">Atkinson Hyperlegible / Lexend</option>
+            <option value="font-dyslexic">OpenDyslexic</option>
+          </select>
+        </div>
+
+        <div class="control-row">
+          <label class="control-label" for="spacingSelect">Text Spacing</label>
+          <select class="control-select" id="spacingSelect" onchange="applySpacing(this.value)">
+            <option value="spacing-standard">Standard Spacing</option>
+            <option value="spacing-spacious">Spacious (1.85 Line Height)</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="font-weight:700; font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:8px;">
+        Tour Stops (13)
+      </div>
+      <div id="drawerList"></div>
+    </div>
     <div class="drawer-footer">
-      <button class="export-btn" onclick="openExportModal()">Export All Notes</button>
+      <button class="export-btn" onclick="openExportModal()">Export All Field Notes</button>
     </div>
   </aside>
 
@@ -648,11 +962,15 @@
   </div>
 
   <script>
-    // Exact mapping to the files uploaded in "Westminster and Whitehall"
+    // Verified GPS Coordinates & Urban Pacing Data
     const stops = [
       {
         id: 1,
         title: "Charing Cross Station & The Strand",
+        lat: 51.5083,
+        lng: -0.1248,
+        distToNext: "~280m",
+        timeToNext: "~4 mins",
         images: [
           { src: "Westminster and Whitehall/1. Tudor London.jpg", caption: "Braun & Hogenberg Map of London (1572): Commercial City vs. Royal Westminster" },
           { src: "Westminster and Whitehall/1. The Charing Cross.jpg", caption: "Old Charing Cross (Engraving published by N. Smith, 1792)" }
@@ -662,17 +980,17 @@
           definition: "An epidemiological condition where urban deaths consistently outstripped births. Tudor London was a 'demographic sink' that could only grow—and quadrupled in size—due to relentless provincial migration."
         },
         historicalNotes: [
-          "England’s population stood at approximately 2.2 million in 1485, still depressed following the Black Death (1348–1349). London held around 50,000 residents.",
-          "By 1603, the national population surged past 4 million, with London exceeding 200,000—establishing it as Western Europe's second-largest metropolis despite infant mortality claiming 20–30% of children before age one.",
-          "The English Sweating Sickness struck in late summer 1485, killing 15,000 Londoners in six weeks and forcing Henry VII to postpone his coronation. Unlike plague, it killed affluent, young, healthy adult males.",
-          "Edward I erected 12 Eleanor Crosses (1291–1294) to prompt prayers for Queen Eleanor's soul in purgatory. The Puritans destroyed this cross in 1647 as idolatrous; today's monument is an 1865 Victorian Gothic replacement.",
-          "The Strand served as the connective spine linking the commercial, self-governing City of London with the royal and legal court at Westminster."
+          "England’s population was ~2.2 million in 1485 following the Black Death. London held around 50,000 residents before swelling past 200,000 by 1603.",
+          "High infant mortality claimed 20–30% of children before age one, meaning the capital depended on thousands of provincial migrants annually.",
+          "The <span class='glossary-term' data-term='Sweating Sickness' data-def='A mysterious, rapidly lethal Tudor epidemic targeting healthy young adults, striking first in 1485.'>Sweating Sickness</span> struck in late summer 1485, killing 15,000 Londoners in six weeks and forcing Henry VII to postpone his coronation.",
+          "Edward I built 12 Eleanor Crosses (1291–1294) to prompt prayers for Queen Eleanor's soul in purgatory. The Puritans destroyed this cross in 1647; today's cross is an 1865 Victorian replacement.",
+          "The Strand served as the connective spine linking the commercial, self-governing City of London with royal Westminster."
         ],
         artHistory: {
           title: "Gothic Revival & Spatial Representation",
           points: [
             "Observe E.M. Barry’s 1865 Eleanor Cross: a Victorian Gothic Revival interpretation using medieval decorative canopy work, pinnacles, and heraldry to invent civic tradition.",
-            "Compare Barry's monument to the 1572 Braun & Hogenberg map: Renaissance bird's-eye cartography used perspective and scale to project urban commercial dominance rather than just geographical accuracy."
+            "Compare Barry's monument to the 1572 Braun & Hogenberg map: Renaissance bird's-eye cartography used perspective and scale to project urban commercial dominance."
           ]
         },
         politics: {
@@ -687,21 +1005,25 @@
       {
         id: 2,
         title: "York Steps & Watergate (The Strand Palaces)",
+        lat: 51.5089,
+        lng: -0.1227,
+        distToNext: "~420m",
+        timeToNext: "~6 mins",
         images: [
-          { src: "Westminster and Whitehall/2. The Strand.jpg", caption: "Stuart-era Map showing the aristocratic palaces and watergates along the Strand" },
+          { src: "Westminster and Whitehall/2. The Strand.jpg", caption: "Stuart-era Map showing aristocratic palaces and watergates along the Strand" },
           { src: "Westminster and Whitehall/2. York Gate.jpg", caption: "Moonlight view of York Watergate resting directly on the River Thames" },
           { src: "Westminster and Whitehall/2. York House.jpg", caption: "19th-century engraving of the York House Watergate and river stairs" }
         ],
         keyConcept: {
           term: "Expropriation & Attainder",
-          definition: "The state seizure of property. Henry VIII stripped Catholic bishops of their Strand palaces during the Reformation, while Acts of Attainder declared fallen nobles guilty of treason without trial, forfeiting their estates to the Crown."
+          definition: "The state seizure of property. Henry VIII stripped Catholic bishops of their Strand palaces, while Acts of Attainder declared fallen nobles guilty of treason without trial, forfeiting estates to the Crown."
         },
         historicalNotes: [
           "Before the Reformation, the south side of the Strand was occupied by the urban town palaces of England's wealthiest bishops (Norwich, Chester, Exeter, Durham).",
-          "Henry VIII systematically seized these episcopal inns and granted them to royal favorites (e.g., Charles Brandon, Edward Seymour, Lord Burghley), transforming the Strand into Europe's premier aristocratic power corridor.",
-          "York House was originally Norwich House (c. 1237). Mary I returned it to the Church via the Archbishop of York, and in Elizabeth's reign, it housed the Keepers of the Great Seal, including Sir Francis Bacon.",
-          "Because the prevailing winds blew from west to east, coal smoke drifted away from Westminster toward the City, creating the exclusive, clean 'West End.'",
-          "The River Thames was the private highway of the elite; noblemen bypassed mud-rutted streets by embarking from private watergates in state barges."
+          "Henry VIII seized these episcopal inns and granted them to royal favorites (e.g., Charles Brandon, Edward Seymour, Lord Burghley), creating an aristocratic power corridor.",
+          "York House was originally Norwich House (c. 1237). Mary I returned it to the Archbishop of York, and in Elizabeth's reign, it housed Keepers of the Great Seal, including Sir Francis Bacon.",
+          "Because prevailing winds blew west to east, coal smoke drifted away from Westminster toward the City, creating the exclusive, clean 'West End.'",
+          "The River Thames was the highway of the elite; noblemen bypassed mud-rutted streets by embarking from private watergates in state barges."
         ],
         artHistory: {
           title: "The Italianate Watergate & Vanishing Palaces",
@@ -713,7 +1035,7 @@
         politics: {
           title: "Monastic Land and the Limits of Royal Prerogative",
           points: [
-            "When Mary I restored Catholicism in 1553, Parliament recognized papal spiritual authority but adamantly refused to return confiscated monastic lands held by gentry and peers.",
+            "When Mary I restored Catholicism in 1553, Parliament recognized papal authority but adamantly refused to return confiscated monastic lands held by gentry and peers.",
             "This confirmed that early modern property rights formed an unyielding boundary against both monarchical prerogative and ecclesiastical authority."
           ]
         },
@@ -722,32 +1044,36 @@
       {
         id: 3,
         title: "Equestrian Statue of Charles I (Trafalgar Square South)",
+        lat: 51.5073,
+        lng: -0.1276,
+        distToNext: "~220m",
+        timeToNext: "~3 mins",
         images: [
-          { src: "Westminster and Whitehall/3. Northumberland House.jpg", caption: "Canaletto, Northumberland House (1752) — Note the Charles I equestrian statue on its pedestal at the right" }
+          { src: "Westminster and Whitehall/3. Northumberland House.jpg", caption: "Canaletto, Northumberland House (1752) — Note the Charles I equestrian statue on its pedestal at right" }
         ],
         keyConcept: {
           term: "The Great Chain of Being",
           definition: "The early modern worldview holding that God created an immutable, universal hierarchy: God → Angels → Monarch → Nobility → Gentry → Yeomen → Husbandmen → Laborers. Disrupting this chain was regarded as mortal sin."
         },
         historicalNotes: [
-          "Cast around 1633 by French sculptor Hubert Le Sueur, this was the first Renaissance-style equestrian bronze in England.",
-          "Ordered destroyed by Parliament during the Civil War, metalsmith John Rivet secretly buried it in Holborn while selling brass cutlery falsely claimed to be melted remains. Charles II purchased and erected it here in 1675.",
+          "Cast c. 1633 by French sculptor Hubert Le Sueur, this was the first Renaissance-style equestrian bronze in England.",
+          "Ordered destroyed by Parliament, metalsmith John Rivet buried it in Holborn while selling brass cutlery claimed to be melted remains. Charles II erected it here in 1675.",
           "The statue stands on the original site of the medieval Eleanor Cross, staring down Whitehall toward the Banqueting House—the site of Charles I's execution.",
-          "Less than 1 percent of Tudor England's population (nobility and gentry) owned 20–30% of the land and monopolized political power, rationalizing inequality through the Great Chain.",
-          "As Keith Wrightson highlights, hierarchy was balanced by mutual obligation: 'Paternalism' (elites providing protection, justice, and grain subsidies) in exchange for 'Deference' (commoners bowing, tipping caps, and 'giving the wall')."
+          "Under 1% of the population owned 20–30% of the land and held near 100% of formal power, rationalizing inequality through the <span class='glossary-term' data-term='Great Chain of Being' data-def='A cosmic hierarchy where every creature and rank has an unalterable, God-given place.'>Great Chain of Being</span>.",
+          "As Keith Wrightson highlights, hierarchy was sustained by <span class='glossary-term' data-term='Paternalism & Deference' data-def='The social contract where elites provided food/protection in return for absolute obedience and respect from commoners.'>paternalism and deference</span>."
         ],
         artHistory: {
           title: "The Renaissance Equestrian Type",
           points: [
             "Directly inspired by the Roman imperial statue of Marcus Aurelius and Donatello's *Gattamelata* in Padua.",
-            "In Renaissance statecraft iconography, a monarch calmly commanding a powerful, muscular stallion symbolizes reason, intellect, and divine authority mastering the passions of the body politic."
+            "In Renaissance iconography, a monarch commanding a muscular stallion symbolizes reason and divine authority mastering the passions of the body politic."
           ]
         },
         politics: {
           title: "Divine Right vs. The Rule of Law",
           points: [
-            "Charles I governed under the doctrine that kings derive their authority directly from God, rendering them unaccountable to human parliaments or laws.",
-            "His trial in 1649 dismantled Divine Right, asserting that executive authority in England is bound by contractual constitutional law and accountable to the political nation."
+            "Charles I governed under <span class='glossary-term' data-term='Divine Right of Kings' data-def='The political doctrine that monarchs derive authority directly from God, answering to no human parliament.'>Divine Right</span>, declaring himself unaccountable to human parliaments or laws.",
+            "His execution in 1649 dismantled Divine Right, asserting that executive authority in England is bound by contractual constitutional law."
           ]
         },
         debatePrompt: "Was early modern 'deference' a product of sincere religious belief in the Great Chain of Being, or a pragmatic survival strategy practiced by ordinary people?"
@@ -755,32 +1081,36 @@
       {
         id: 4,
         title: "The Palace of Whitehall (Northern Approach)",
+        lat: 51.5055,
+        lng: -0.1265,
+        distToNext: "~110m",
+        timeToNext: "~2 mins",
         images: [
-          { src: "Westminster and Whitehall/4. Palace of Whitehall 1680.jpg", caption: "Fisher’s Ground Plan of Whitehall (1680) showing the maze of courts and royal apartments" }
+          { src: "Westminster and Whitehall/4. Palace of Whitehall 1680.jpg", caption: "Fisher’s Ground Plan of Whitehall (1680) showing the labyrinth of courts and royal apartments" }
         ],
         keyConcept: {
           term: "Personal Monarchy",
           definition: "A system where political power, patronage, and state decisions flowed directly from physical proximity to the sovereign's person within the chambers of the royal household."
         },
         historicalNotes: [
-          "Originally York Place, London seat of the Archbishops of York since 1240; expanded into a palace of lavish splendor by Cardinal Thomas Wolsey (1514–1529).",
-          "When Wolsey failed to secure Henry VIII's annulment from Catherine of Aragon in 1529, Henry confiscated the palace, inspected its treasures with Anne Boleyn, and renamed it Whitehall.",
-          "Henry expanded Whitehall into Europe's largest palace complex (23 acres, 1,500 rooms), replacing the fire-damaged residential quarters of the Palace of Westminster.",
-          "The layout reflected strict hierarchy: the public Great Hall led to the Presence Chamber, which led to the private Privy Chamber, where the Groom of the Stool controlled intimate access to the King.",
+          "Originally York Place, London seat of the Archbishops of York; expanded into lavish splendor by Cardinal Thomas Wolsey (1514–1529).",
+          "When Wolsey failed to secure Henry VIII's annulment from Catherine of Aragon in 1529, Henry confiscated the palace under <span class='glossary-term' data-term='Praemunire' data-def='The medieval offense of asserting papal jurisdiction in England over the authority of the King.'>Praemunire</span>.",
+          "Henry expanded Whitehall into Europe's largest palace complex (23 acres, 1,500 rooms), replacing the fire-damaged residential quarters of Westminster Palace.",
+          "The layout reflected strict hierarchy: Great Hall → Presence Chamber → <span class='glossary-term' data-term='Privy Chamber' data-def='The private inner sanctum of the royal household where the Groom of the Stool controlled intimate access to the King.'>Privy Chamber</span>.",
           "Henry VIII married Anne Boleyn (1533) and Jane Seymour (1536) here, and died in his Whitehall bedchamber in January 1547."
         ],
         artHistory: {
           title: "The Architecture of Magnificence",
           points: [
-            "Tudor palaces abandoned medieval military defenses in favor of expansive courtyards, decorative brickwork, and vast window expanses designed for royal display (*magnificentia*).",
-            "Examine Fisher's 1680 ground plan: note how the palace formed a labyrinthine city-within-a-city, connecting residential river apartments with recreational tilt-yards and tennis courts."
+            "Tudor palaces abandoned defensive battlements for vast courtyards, decorative brickwork, and broad windows designed for royal display (*magnificentia*).",
+            "Fisher's 1680 ground plan shows how the palace connected river state apartments with recreational tiltyards, bowling greens, and tennis courts."
           ]
         },
         politics: {
           title: "Household Governance to Institutional State",
           points: [
-            "Under Thomas Cromwell's 1530s administration (G.R. Elton's 'Tudor Revolution in Government'), informal rule by household favorites began shifting toward an institutionalized, bureaucratic Privy Council.",
-            "This marks the earliest architectural and administrative transition from the monarch’s domestic court into the modern Whitehall civil service departments."
+            "Under Thomas Cromwell's 1530s administration (G.R. Elton's 'Tudor Revolution in Government'), informal rule began shifting toward a bureaucratic Privy Council.",
+            "This marks the earliest architectural and administrative transition from the monarch’s domestic court into the modern Whitehall civil service."
           ]
         },
         debatePrompt: "Did the concentration of political power within the King's intimate Privy Chamber make Tudor government more decisive, or dangerously vulnerable to court faction?"
@@ -788,32 +1118,36 @@
       {
         id: 5,
         title: "The Banqueting House",
+        lat: 51.50458,
+        lng: -0.12592,
+        distToNext: "~25m",
+        timeToNext: "<1 min",
         images: [
           { src: "Westminster and Whitehall/5. Apotheosis of James I - Reubens.jpg", caption: "Peter Paul Rubens, The Apotheosis of James I (Central Oval Ceiling Canvas, 1636)" }
         ],
         keyConcept: {
           term: "Palladianism & Absolutism",
-          definition: "An architectural style based on classical symmetry, mathematical proportions, and the orders of Andrea Palladio, used by the Stuart Crown to visually project imperial order."
+          definition: "An architectural style based on classical symmetry and proportions derived from Andrea Palladio and Vitruvius, used by Stuart monarchs to project imperial majesty."
         },
         historicalNotes: [
-          "Completed in 1622 by Inigo Jones for James I at a cost of £15,718, this was the first purely classical, neoclassical building erected in England.",
-          "Jones had toured Italy, mastering Vitruvian principles: the exterior balances a rugged lower Ionic order with an ornate upper Corinthian order, capped with classical pediments.",
-          "In 1636, Charles I installed nine monumental ceiling canvases painted by Flemish Baroque master Peter Paul Rubens.",
-          "The central panel, *The Apotheosis of James I*, shows Charles's father being carried directly to heaven by Justice, Religion, and Truth, celebrating the Stuart Divine Right of Kings.",
-          "In a bitter historical irony, Charles I was forced to walk beneath this visual celebration of absolute monarchy on January 30, 1649, on his way to the execution scaffold."
+          "Completed in 1622 by Inigo Jones for James I at a cost of £15,718, this was the first purely neoclassical building in England.",
+          "Jones mastered Vitruvian rules: a rugged lower Ionic order balances an ornate upper Corinthian order, capped with alternating pediments.",
+          "In 1636, Charles I installed nine ceiling canvases painted by Flemish Baroque master Peter Paul Rubens.",
+          "The central panel, *The Apotheosis of James I*, shows Charles's father being carried to heaven by Justice, Religion, and Truth, celebrating Divine Right.",
+          "Charles I walked beneath this ceiling on January 30, 1649, on his way out of a window to the execution scaffold."
         ],
         artHistory: {
           title: "Baroque Illusionism vs. Palladian Restraint",
           points: [
             "Contrast Inigo Jones’s restrained, rational exterior mathematics with Rubens’s dynamic, Counter-Reformation Baroque ceiling inside.",
-            "Rubens employs dynamic foreshortening (*di sotto in sù*), rich venetian color, and flying allegorical putti to dissolve the physical ceiling into divine celestial space."
+            "Rubens employs dynamic foreshortening (*di sotto in sù*), rich color, and flying putti to dissolve the ceiling into celestial space."
           ]
         },
         politics: {
           title: "Court Ideology vs. Country Resentment",
           points: [
-            "The lavish Banqueting House alienated Puritan Parliamentarians, who viewed its Italianate architecture and Rubens ceiling as evidence of Catholic Counter-Reformation tyranny.",
-            "Charles I’s 11-year Personal Rule (1629–1640) was visually centered here, highlighting how royal expenditure clashed directly with Parliament’s exclusive power to grant taxation."
+            "The lavish Banqueting House alienated Puritan Parliamentarians, who viewed its Italianate style and Rubens ceiling as evidence of Catholic tyranny.",
+            "Charles I’s Personal Rule (1629–1640) was centered here, showing how royal expenditure clashed directly with Parliament’s exclusive power to grant taxation."
           ]
         },
         debatePrompt: "Can high visual art and monumental architecture successfully legitimize royal power, or does it inevitably provoke populist political backlash?"
@@ -821,6 +1155,10 @@
       {
         id: 6,
         title: "The Execution Site of Charles I",
+        lat: 51.50450,
+        lng: -0.12605,
+        distToNext: "~80m",
+        timeToNext: "~1 min",
         images: [
           { src: "Westminster and Whitehall/6. Execution of Charles I Banqueting House.jpg", caption: "Contemporary Broadsheet Print depicting the public execution outside Banqueting House (1649)" }
         ],
@@ -829,23 +1167,23 @@
           definition: "The formal, public trial and execution of an anointed monarch by a court purporting to represent the sovereign authority of the people."
         },
         historicalNotes: [
-          "On Tuesday, January 30, 1649, Charles I walked from St James’s Palace across the park to Whitehall, asking for two shirts so the winter cold would not make him shiver and seem afraid.",
-          "A scaffold draped in black was erected outside the first floor of the Banqueting House, surrounded by ranks of cavalry to hold back the immense civilian crowd.",
-          "On the scaffold, Charles declared: 'A subject and a sovereign are clean different things'—reaffirming the static cosmic hierarchy of the Great Chain of Being to his dying breath.",
-          "Severed with a single axe blow, his head was held aloft; an eyewitness recorded: 'There was such a groan by the thousands then present as I never heard before.'",
-          "Keith Wrightson notes this event severed England's ancient political theology; sovereign authority was dragged from divine cosmic order into human legal accountability."
+          "On Tuesday, January 30, 1649, Charles I walked from St James’s Palace across the park to Whitehall, asking for two shirts so the cold would not make him shiver.",
+          "A scaffold draped in black was erected outside the first floor of the Banqueting House, surrounded by ranks of cavalry to hold back the immense crowd.",
+          "On the scaffold, Charles declared: 'A subject and a sovereign are clean different things'—reaffirming the static cosmic hierarchy to his dying breath.",
+          "Severed with a single blow, his head was held aloft; an eyewitness recorded: 'There was such a groan by the thousands then present as I never heard before.'",
+          "This event severed England's political theology; sovereign authority was dragged from divine cosmic order into human legal accountability."
         ],
         artHistory: {
           title: "Visual Propaganda & The Cult of Martyrdom",
           points: [
-            "Analyze the broadsheet print: note the stage-like scaffold, the masking of the executioners, and the surrounding sea of roundhead helmets.",
-            "Compare this with the royalist frontispiece to the *Eikon Basilike* (1649), which depicted Charles kneeling in prayer, swapping his earthly crown of vanity for a heavenly crown of glory."
+            "Analyze the broadsheet print: note the stage-like scaffold, masked executioners, and surrounding sea of roundhead helmets.",
+            "Compare this with the royalist frontispiece to the *Eikon Basilike* (1649), which depicted Charles swapping his earthly crown for a heavenly crown of glory."
           ]
         },
         politics: {
           title: "The Birth of Parliamentary Sovereignty",
           points: [
-            "The execution shattered the legal fiction that the King could do no wrong, leading directly to the Commonwealth and Protectorate under Oliver Cromwell.",
+            "The execution shattered the legal fiction that the King could do no wrong, leading directly to the Commonwealth under Oliver Cromwell.",
             "When the monarchy was restored in 1660 and revised in the 1689 Bill of Rights, the principle of **King-in-Parliament** permanently replaced unfettered royal prerogative."
           ]
         },
@@ -854,6 +1192,10 @@
       {
         id: 7,
         title: "The Site of the Holbein Gate",
+        lat: 51.50390,
+        lng: -0.12580,
+        distToNext: "~110m",
+        timeToNext: "~2 mins",
         images: [
           { src: "Westminster and Whitehall/7. Holbein Gate.jpg", caption: "George Vertue’s 1725 Engraving of the Holbein Gate (demolished 1759)" },
           { src: "Westminster and Whitehall/7. Henry VIII Marriage Holbein Gate.jpg", caption: "19th-century woodcut depicting the secret marriage of Henry VIII and Anne Boleyn" }
@@ -863,24 +1205,24 @@
           definition: "The constitutional doctrine articulated in 1533 declaring England an 'Empire' recognizing no superior authority on earth—clerical or secular—thereby establishing the Royal Supremacy."
         },
         historicalNotes: [
-          "Erected by Henry VIII in 1532 across the muddy, rutted public road running between London and Westminster, connecting the residential palace to the western sports grounds.",
-          "On January 25, 1533, Henry VIII secretly married Anne Boleyn in an upper chamber here; secrecy was vital as his divorce from Catherine of Aragon was incomplete and Anne was pregnant.",
-          "This secret ceremony accelerated the Break with Rome, prompting Thomas Cromwell to draft the *Act in Restraint of Appeals* (1533) and the *Act of Supremacy* (1534).",
-          "The gatehouse allowed the King to cross between his chambers, the tiltyard, and the tennis courts without mingling with common subjects on the foul street below.",
-          "It survived the Whitehall fire of 1698 but was demolished in 1759 to widen Whitehall for growing carriage traffic."
+          "Erected in 1532 across the muddy public road running between London and Westminster, connecting the palace to western sports facilities.",
+          "On January 25, 1533, Henry VIII secretly married Anne Boleyn in an upper chamber; secrecy was vital as his divorce from Catherine of Aragon was incomplete and Anne was pregnant.",
+          "This ceremony accelerated the Break with Rome, prompting the *Act in Restraint of Appeals* (1533) and the *Act of Supremacy* (1534).",
+          "The gatehouse allowed the King to cross between his chambers, tiltyard, and tennis courts without mingling with common subjects on the foul street below.",
+          "It survived the Whitehall fire of 1698 but was demolished in 1759 to widen Whitehall for carriage traffic."
         ],
         artHistory: {
           title: "Vernacular Gothic meets Italian Renaissance",
           points: [
-            "Examine Vertue's 1725 engraving: the gate combined English Perpendicular Gothic (battlements, octagonal corner turrets, chequerboard flintwork) with Italian Renaissance classicism.",
+            "The gate combined English Perpendicular Gothic (battlements, octagonal turrets, chequerboard flintwork) with Italian Renaissance classicism.",
             "Notice the classical terracotta medallion roundels of Roman emperors set into the facade, crafted by Florentine sculptor Pietro Torrigiano."
           ]
         },
         politics: {
-          title: "Statute Law as the Supreme Legal Instrument",
+          title: "Statute Law as Supreme Legal Instrument",
           points: [
             "To make his marriage to Anne legitimate, Henry VIII utilized parliamentary statutes rather than personal proclamation.",
-            "By employing Parliament to dissolve the Catholic Church in England, Henry inadvertently established that statutory law (acts passed by King-in-Parliament) reigned supreme."
+            "By employing Parliament to dissolve the Catholic Church in England, Henry established that statutory law reigned supreme."
           ]
         },
         debatePrompt: "Was the English Reformation primarily driven by high theological conviction, or was it a pragmatic dynastic strategy to secure a male heir?"
@@ -888,6 +1230,10 @@
       {
         id: 8,
         title: "Henry VIII’s Wine Cellar",
+        lat: 51.50360,
+        lng: -0.12470,
+        distToNext: "~70m",
+        timeToNext: "~1 min",
         images: [
           { src: "Westminster and Whitehall/8. Henry VIII Wine Cellar.jpg", caption: "Henry VIII’s vaulted Tudor brick wine cellar, preserved deep beneath the MoD" }
         ],
@@ -897,16 +1243,16 @@
         },
         historicalNotes: [
           "Constructed in 1536 under Wolsey’s original brick structures, this subterranean brick vault measures 70 by 30 feet.",
-          "Whitehall received over 300 massive tuns of claret annually shipped directly from Gascony via the Thames; fresh wine ('vintage') was sharp, acidic, and prone to spoiling quickly.",
-          "In Tudor society, drink marked social rank: commoners relied on ale and small beer for caloric sustenance and clean hydration, while the court elite drank imported wine sweetened into *hippocras*.",
-          "Elite diets were heavy in imported sugar and meat, leaving courtiers and Elizabeth I with rotten, blackened teeth—a physical marker of high status.",
-          "In 1949, during construction of the Ministry of Defence, engineers encased the 800-ton brick cellar in steel and concrete, lowering it 19 feet and shifting it 9 feet west to preserve it."
+          "Whitehall received over 300 tuns of claret annually shipped directly from Gascony via the Thames; fresh wine was sharp and acidic.",
+          "In Tudor society, drink marked social rank: commoners relied on ale and beer for calories and clean hydration, while the court elite drank imported wine sweetened into *hippocras*.",
+          "Elite diets were heavy in imported sugar, leaving courtiers and Elizabeth I with rotten, blackened teeth—a physical marker of high status.",
+          "In 1949, during construction of the Ministry of Defence, engineers encased the 800-ton cellar in steel and concrete, lowering it 19 feet and shifting it 9 feet west to preserve it."
         ],
         artHistory: {
           title: "Tudor Brickwork & Ribbed Vaulting",
           points: [
             "Observe the low-springing brick barrel and ribbed vaults supported by short stone columns: an example of English late medieval engineering influenced by Low Countries brick masons.",
-            "In early Tudor England, high-grade brick masonry was an elite luxury material reserved for royal and episcopal palaces before becoming common in domestic construction."
+            "In early Tudor England, high-grade brick masonry was an elite luxury material reserved for royal palaces before becoming common in domestic construction."
           ]
         },
         politics: {
@@ -921,6 +1267,10 @@
       {
         id: 9,
         title: "The Site of the Great Hall (Whitehall)",
+        lat: 51.50330,
+        lng: -0.12510,
+        distToNext: "~270m",
+        timeToNext: "~4 mins",
         images: [
           { src: "Westminster and Whitehall/9. Palace of Westminster East with Banqueting House.jpg", caption: "Reconstruction drawing of the Tudor Whitehall palace riverfront and Great Hall" }
         ],
@@ -930,16 +1280,16 @@
         },
         historicalNotes: [
           "The Great Hall was the social heart of Tudor court life, where ambitious provincial gentry networked, sought office, and competed for aristocratic patrons.",
-          "Court entertainment was political: William Shakespeare's *The Tempest* was performed here before James I on Hallowmas Night (Nov 1), 1611, exploring themes of legitimate sovereignty and natural hierarchy.",
+          "Shakespeare's *The Tempest* was performed here before James I on Hallowmas Night (Nov 1), 1611, exploring themes of legitimate sovereignty and natural hierarchy.",
           "Beyond the Great Hall lay the Guard Chamber, and beyond that the King's private lodging—the ultimate objective for any aspiring courtier.",
           "While courtiers feasted here, Keith Wrightson’s research shows England's 'fourth sort' lived with proud self-worth: a London craftsman in 1589 stated he was worth 'a couple of pence, if every bird had his feather.'",
-          "Ordinary working people proudly declared they were 'beholden to no man' and 'honest poor neighbors,' resisting the elite view that they were merely passive drudges."
+          "Working people proudly declared they were 'beholden to no man' and 'honest poor neighbors,' resisting the elite view that they were merely passive drudges."
         ],
         artHistory: {
           title: "The Perspective of Court Spectacle",
           points: [
             "Tudor Great Halls featured timber hammerbeam roofs with central hearths, which gradually transitioned into Jacobean proscenium-arch court masques.",
-            "In Inigo Jones's stage designs, single-point perspective was mathematically configured so that the visual illusion resolved perfectly only from the King’s royal chair."
+            "In Inigo Jones's stage designs, single-point perspective was mathematically configured so that visual illusions resolved perfectly only from the King’s royal chair."
           ]
         },
         politics: {
@@ -954,320 +1304,6 @@
       {
         id: 10,
         title: "William Tyndale Statue",
-        images: [
-          { src: "Westminster and Whitehall/10. Tyndale Execution.jpg", caption: "Foxe’s Book of Martyrs woodcut: William Tyndale strangled and burned at the stake (1536)" }
-        ],
-        keyConcept: {
-          term: "Vernacular Scripture & Print Culture",
-          definition: "Translating sacred texts into the common tongue (vernacular) and disseminating them via movable-type print, breaking the ecclesiastical monopoly on Latin learning."
-        },
-        historicalNotes: [
-          "Under the 1408 Constitutions of Oxford, translating the Bible into English without episcopal license was punishable by burning as heresy.",
-          "William Tyndale fled to Germany in 1524, producing the first English New Testament translated directly from Greek and Hebrew, printed using movable type.",
-          "Smuggled into England inside cloth bales, his pocket bibles circulated widely among London merchants and apprentices; Bishop Tunstall burned copies at St Paul's Cross.",
-          "Tyndale was betrayed and martyred near Brussels in 1536, praying: 'Lord, open the King of England’s eyes!' By 1539, Henry VIII authorized the *Great Bible*, based on Tyndale's text.",
-          "Keith Wrightson shows illiteracy among yeomen dropped from 55% in the 1580s to 39% by 1610; Foxe's *Book of Martyrs* (1563), chained in churches, cemented a fiercely anti-Catholic national identity."
-        ],
-        artHistory: {
-          title: "The Graphic Woodcut as Popular Weapon",
-          points: [
-            "Observe the Foxe woodcut: graphic line art created an immediate, emotional visual narrative of martyrdom accessible even to illiterate and semi-literate commoners.",
-            "Contrast this cheap, populist Protestant print culture with the opulent, gold-leaf Italianate altar paintings favored by Catholic counter-reformers."
-          ]
-        },
-        politics: {
-          title: "Individual Conscience & The Public Sphere",
-          points: [
-            "Placing vernacular bibles in ordinary households broke the spiritual monopoly of the Crown and episcopacy, fostering individual interpretation.",
-            "This culture of private reading and public scriptural debate laid the ideological foundations for 17th-century civil liberties and radical democratic thought."
-          ]
-        },
-        debatePrompt: "Did the widespread availability of the English Bible unite the nation under a shared Protestant culture, or permanently fracture it into religious conflict?"
-      },
-      {
-        id: 11,
-        title: "Westminster Hall (Palace of Westminster)",
-        images: [
-          { src: "Westminster and Whitehall/11. Westminster Palace.jpg", caption: "Bird’s-eye perspective of the medieval Palace of Westminster and law courts" },
-          { src: "Westminster and Whitehall/11. Westminster Hall.jpg", caption: "Interior of Westminster Hall showing Richard II's colossal hammerbeam timber roof" },
-          { src: "Westminster and Whitehall/11. Star Chamber.jpg", caption: "Tudor/Jacobean paneled judicial chamber typical of Westminster Palace courts" }
-        ],
-        keyConcept: {
-          term: "High Treason & Common Law",
-          definition: "The highest crime against the Crown, expanded under Henry VIII’s 1534 Treason Act to include spoken words denying royal titles. The Hall housed the supreme courts of King’s Bench, Common Pleas, and Chancery."
-        },
-        historicalNotes: [
-          "Dating back to 1097 under William Rufus and given its spectacular hammerbeam timber roof by Richard II in the 1390s, this is the oldest surviving structure of the ancient palace.",
-          "Site of state treason trials: Sir Thomas More and Bishop John Fisher (1535), Anne Boleyn's alleged lovers (1536), Protector Somerset (1551), and the Duke of Northumberland (1553).",
-          "Keith Wrightson highlights an Elizabethan legal boom: common law suits at Westminster leaped from 5,300 in 1560 to 13,000 in 1580, showing that disputes were settled via central law courts rather than feudal violence.",
-          "**Anne Boleyn's Coronation Banquet (1533) as Theatre of Power:**",
-          "• Senior nobles performed hereditary service: the Lord High Steward commanded mounted on a courser in crimson velvet.",
-          "• Anne sat under a golden Cloth of Estate; peeresses stood beside her to hold a cloth before her face if she needed to spit.",
-          "• 32 extravagant dishes were served in the first course (cranes, bitterns, godwits), with smaller portions allocated to lower social ranks.",
-          "• Henry VIII watched secretly from a side latticework window—an all-seeing monarch directing the display of dynastic legitimacy."
-        ],
-        artHistory: {
-          title: "The Hammerbeam Feat & Spatial Hierarchy",
-          points: [
-            "Master carpenter Hugh Herland’s hammerbeam roof spans 68 feet without central pillars, using cantilevered horizontal beams decorated with carved wooden angels.",
-            "The ceiling symbolized the divine heavenly vault looking down upon earthly justice, visually reinforcing royal judicial authority."
-          ]
-        },
-        politics: {
-          title: "Judicial Interference vs. Judicial Independence",
-          points: [
-            "Under the Tudors, common law judges served at the King's pleasure (*durante beneplacito*), allowing monarchs to dismiss uncooperative judges.",
-            "This vulnerability catalyzed the constitutional reforms of the 1701 Act of Settlement, which established full judicial tenure during good behavior."
-          ]
-        },
-        debatePrompt: "Were Tudor state treason trials legitimate exercises of common law, or staged theatrical spectacles designed to terrify political rivals?"
-      },
-      {
-        id: 12,
-        title: "Westminster Abbey (West Front & Lady Chapel)",
-        images: [
-          { src: "Westminster and Whitehall/12. Coronation Westminster Abbey.jpg", caption: "Engraving of Anne Boleyn’s elaborate royal coronation procession to the Abbey (1533)" }
-        ],
-        keyConcept: {
-          term: "Royal Peculiar & Dynastic Legitimacy",
-          definition: "A church jurisdiction answering directly to the monarch rather than to a diocesan bishop. The Abbey served as the sacred stage where coronation oaths bound monarch, church, and realm."
-        },
-        historicalNotes: [
-          "Surrendered in 1540 during the Dissolution of the Monasteries, Elizabeth I refounded it in 1560 as a Royal Peculiar directly under Crown authority.",
-          "All crowned Tudor monarchs except Henry VIII (buried at Windsor) are interred here; Mary I and Elizabeth I share a single tomb built by James I.",
-          "Pietro Torrigiano’s Italian Renaissance bronze effigy of Henry VII and Elizabeth of York rests inside the English Perpendicular Gothic Lady Chapel.",
-          "**Anne Boleyn's Coronation Procession (Whitsunday, June 1, 1533):**",
-          "• A red carpet was unrolled over 300 yards between Westminster Hall and the Abbey High Altar.",
-          "• Six months pregnant, Anne wore purple velvet and kept her hair loose beneath a gold circlet—a visual convention reserved for virgin brides to signify purity.",
-          "• Archbishop Cranmer crowned her with the sacred Crown of St Edward—an unprecedented honor, as this relic was traditionally reserved solely for reigning monarchs."
-        ],
-        artHistory: {
-          title: "Torrigiano & The Florentine Renaissance",
-          points: [
-            "Observe the collision of styles in the Lady Chapel: late medieval fan vaulting surrounds Pietro Torrigiano's classical Florentine tomb chest (completed 1518).",
-            "Torrigiano (famous for breaking Michelangelo's nose in a workshop brawl) introduced pure Italian Renaissance naturalism, gilded bronze putti, and classical acanthus scrolls to Tudor England."
-          ]
-        },
-        politics: {
-          title: "The Coronation Oath as Constitutional Contract",
-          points: [
-            "The coronation liturgy requires the sovereign to swear an oath to maintain the laws, customs, and Protestant religion established by law.",
-            "This ritual reinforces the principle that monarchical authority in England is conditional and bound by an uncodified constitutional contract."
-          ]
-        },
-        debatePrompt: "Does the sacred coronation ritual reinforce genuine political loyalty, or merely disguise royal vulnerability and illegitimacy?"
-      },
-      {
-        id: 13,
-        title: "The Jewel Tower (Abingdon Street)",
-        images: [
-          { src: "Westminster and Whitehall/13. Jewel Tower.jpg", caption: "Cutaway architectural diagram showing the three stone vaulted levels of the Jewel Tower" },
-          { src: "Westminster and Whitehall/13. Jewel Tower and Abbey.jpg", caption: "Aerial view of the Jewel Tower situated beside the medieval Palace of Westminster" }
-        ],
-        keyConcept: {
-          term: "King-in-Parliament & The Paper State",
-          definition: "The supreme legislative body (Monarch, Lords, Commons). The Tower preserved parliamentary statutes, representing the early modern shift from personal royal decrees to written statute law."
-        },
-        historicalNotes: [
-          "Built in 1365–1366 by Edward III as a fortified royal treasury surrounded by a freshwater moat fed by the Thames.",
-          "One of only two complete medieval buildings surviving from the Palace of Westminster (along with Westminster Hall) after the Great Fire of 1834.",
-          "Downgraded under Henry VIII after the court moved to Whitehall, an inventory in 1547 noted it held royal wardrobe items, linens, and dolls of Princesses Mary and Elizabeth.",
-          "Before 1600, it became the repository of the Clerk of the Parliaments; its fireproof stone vaults stored all original manuscript Acts of Parliament from the Tudors down to 1864.",
-          "This modest tower preserved the paper trail of the English state: the Break with Rome, the Elizabethan Settlement, and the Petition of Right."
-        ],
-        artHistory: {
-          title: "Utilitarian Military Vernacular",
-          points: [
-            "Constructed of rugged Kentish ragstone with Reigate stone dressings, functional machicolations, and trefoil-headed windows.",
-            "Its defensive, vernacular architecture contrasts sharply with the classical balance of Inigo Jones’s Banqueting House just down the street."
-          ]
-        },
-        politics: {
-          title: "The Preservation of Constitutional Precedent",
-          points: [
-            "In an uncodified constitution, the preservation of original parliamentary statutes provides the precedent for the Rule of Law.",
-            "During the constitutional clashes of the 1620s and 1640s, parliamentarians cited these very manuscript records to resist Charles I’s arbitrary fiscal measures."
-          ]
-        },
-        debatePrompt: "Which contributed more to British democracy: violent 17th-century civil wars, or the gradual accumulation of parliamentary statutes preserved in this tower?"
-      }
-    ];
-
-    let currentStopIndex = 0;
-
-    function renderStop(index) {
-      const stop = stops[index];
-
-      // Update header bar
-      document.getElementById("barTitle").textContent = `${stop.id}. ${stop.title.split('(')[0]}`;
-      document.getElementById("barProgress").textContent = `Stop ${stop.id} of ${stops.length}`;
-      document.getElementById("stopBadge").textContent = `Stop ${stop.id}`;
-      document.getElementById("stopTitle").textContent = stop.title;
-
-      // Render Gallery
-      const gallery = document.getElementById("stopGallery");
-      gallery.innerHTML = "";
-      stop.images.forEach(img => {
-        const wrap = document.createElement("div");
-        wrap.className = "image-wrapper";
-        // encodeURI ensures paths with spaces load properly across all browsers & Linux servers
-        const safeSrc = encodeURI(img.src);
-        wrap.innerHTML = `
-          <img src="${safeSrc}" alt="${img.caption}" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'600\\' height=\\'350\\' viewBox=\\'0 0 600 350\\'%3E%3Crect fill=\\'%23ECE5DC\\' width=\\'600\\' height=\\'350\\'/ %3E%3Ctext fill=\\'%23666\\' font-family=\\'sans-serif\\' font-size=\\'18\\' x=\\'50%25\\' y=\\'50%25\\' text-anchor=\\'middle\\'%3E[ Image file: ${img.src} ]%3C/text%3E%3C/svg%3E';">
-          <div class="image-caption">${img.caption}</div>
-        `;
-        gallery.appendChild(wrap);
-      });
-
-      // Render Key Concept
-      document.getElementById("conceptTerm").textContent = `Key Concept: ${stop.keyConcept.term}`;
-      document.getElementById("conceptDef").textContent = stop.keyConcept.definition;
-
-      // Render Historical Notes
-      const notesList = document.getElementById("historicalNotes");
-      notesList.innerHTML = "";
-      stop.historicalNotes.forEach(note => {
-        const li = document.createElement("li");
-        li.textContent = note;
-        notesList.appendChild(li);
-      });
-
-      // Render Art History
-      const artBox = document.getElementById("artHistoryContent");
-      artBox.innerHTML = `
-        <p style="font-weight:700; color:var(--crimson); margin-bottom:6px;">${stop.artHistory.title}</p>
-        <ul>${stop.artHistory.points.map(p => `<li>${p}</li>`).join('')}</ul>
-      `;
-
-      // Render Politics
-      const polBox = document.getElementById("politicsContent");
-      polBox.innerHTML = `
-        <p style="font-weight:700; color:var(--navy); margin-bottom:6px;">${stop.politics.title}</p>
-        <ul>${stop.politics.points.map(p => `<li>${p}</li>`).join('')}</ul>
-      `;
-
-      // Render Debate Prompt
-      document.getElementById("debateText").textContent = stop.debatePrompt;
-
-      // Load Saved Scribe Note
-      const savedNote = localStorage.getItem(`westminster_stop_${stop.id}`) || "";
-      document.getElementById("scribeNotes").value = savedNote;
-      document.getElementById("saveStatus").textContent = savedNote ? "Saved to device" : "Awaiting notes";
-
-      // Update Navigation Buttons
-      document.getElementById("prevBtn").disabled = (index === 0);
-      const nextBtn = document.getElementById("nextBtn");
-      if (index === stops.length - 1) {
-        nextBtn.textContent = "Finish Walk";
-        nextBtn.className = "nav-btn nav-btn-finish";
-      } else {
-        nextBtn.textContent = "Next →";
-        nextBtn.className = "nav-btn";
-      }
-
-      // Update Menu active states
-      renderDrawerList();
-      window.scrollTo(0, 0);
-    }
-
-    // Auto-save Scribe Note to localStorage
-    function saveCurrentNote() {
-      const stop = stops[currentStopIndex];
-      const val = document.getElementById("scribeNotes").value;
-      localStorage.setItem(`westminster_stop_${stop.id}`, val);
-      document.getElementById("saveStatus").textContent = "Auto-saved";
-    }
-
-    function prevStop() {
-      if (currentStopIndex > 0) {
-        currentStopIndex--;
-        renderStop(currentStopIndex);
-      }
-    }
-
-    function nextStop() {
-      if (currentStopIndex < stops.length - 1) {
-        currentStopIndex++;
-        renderStop(currentStopIndex);
-      } else {
-        openExportModal();
-      }
-    }
-
-    function goToStop(index) {
-      currentStopIndex = index;
-      renderStop(currentStopIndex);
-      toggleDrawer();
-    }
-
-    // Slide-out Drawer Logic
-    function toggleDrawer() {
-      const drawer = document.getElementById("menuDrawer");
-      drawer.classList.toggle("open");
-    }
-
-    function renderDrawerList() {
-      const list = document.getElementById("drawerList");
-      list.innerHTML = "";
-      stops.forEach((s, idx) => {
-        const item = document.createElement("div");
-        item.className = `stop-menu-item ${idx === currentStopIndex ? 'active' : ''}`;
-        const hasNotes = localStorage.getItem(`westminster_stop_${s.id}`) ? " 📝" : "";
-        item.innerHTML = `<span>${s.id}. ${s.title.split('(')[0]}</span><span style="font-size:0.8rem; color:var(--gold);">${hasNotes}</span>`;
-        item.onclick = () => goToStop(idx);
-        list.appendChild(item);
-      });
-    }
-
-    // Export Notes Modal Functions
-    function openExportModal() {
-      const modal = document.getElementById("exportModal");
-      const exportText = document.getElementById("exportText");
-      
-      let compiled = "=== WESTMINSTER HISTORICAL WALK FIELD NOTES ===\n";
-      compiled += `Exported on: ${new Date().toLocaleString()}\n\n`;
-
-      stops.forEach(s => {
-        const note = localStorage.getItem(`westminster_stop_${s.id}`) || "[No notes recorded]";
-        compiled += `--------------------------------------------------\n`;
-        compiled += `STOP ${s.id}: ${s.title}\n`;
-        compiled += `Key Concept: ${s.keyConcept.term}\n`;
-        compiled += `Field Notes:\n${note}\n\n`;
-      });
-
-      exportText.value = compiled;
-      modal.classList.add("open");
-      if (document.getElementById("menuDrawer").classList.contains("open")) {
-        toggleDrawer();
-      }
-    }
-
-    function closeExportModal() {
-      document.getElementById("exportModal").classList.remove("open");
-    }
-
-    function copyNotesToClipboard() {
-      const text = document.getElementById("exportText");
-      text.select();
-      navigator.clipboard.writeText(text.value).then(() => {
-        alert("All field notes copied to clipboard!");
-      });
-    }
-
-    function downloadNotesFile() {
-      const text = document.getElementById("exportText").value;
-      const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = `Westminster_Field_Notes_${new Date().toISOString().slice(0,10)}.txt`;
-      link.click();
-      URL.revokeObjectURL(link.href);
-    }
-
-    // Initialize App
-    document.addEventListener("DOMContentLoaded", () => {
-      renderStop(0);
-    });
-  </script>
-</body>
-</html>
+        lat: 51.50630,
+        lng: -0.12310,
+        distToNext
