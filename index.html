@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Westminster Historical Walk (1485–1603)</title>
+  <title>Westminster Historical Walk: Power, People & Topography (1485–1603)</title>
   
   <!-- Accessibility Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -113,11 +113,8 @@
       padding: 16px;
     }
 
-    /* Stop Sections Display Logic */
-    .stop-section {
-      display: none;
-    }
-
+    /* Stop Sections Display */
+    .stop-section { display: none; }
     .stop-section.active {
       display: block;
       animation: fadeIn 0.25s ease-in;
@@ -162,7 +159,7 @@
       margin-bottom: 10px;
     }
 
-    /* Progress & Walking Navigation Bar */
+    /* Navigation Anchor Bar */
     .nav-anchor-bar {
       background: #F4ECE1;
       border: 1px solid var(--border);
@@ -198,11 +195,9 @@
       transition: background-color 0.15s ease;
     }
 
-    .map-link-btn:hover {
-      background: var(--crimson);
-    }
+    .map-link-btn:hover { background: var(--crimson); }
 
-    /* Image Gallery */
+    /* Gallery */
     .gallery {
       display: flex;
       flex-direction: column;
@@ -236,61 +231,104 @@
       font-style: italic;
     }
 
-    /* Key Concept Callout */
-    .concept-box {
-      background: var(--gold-light);
-      border-left: 4px solid var(--gold);
-      padding: 14px 16px;
-      border-radius: 0 6px 6px 0;
-      margin-bottom: 20px;
-    }
-
-    .concept-title {
-      font-size: 0.9rem;
+    /* Step Subheadings */
+    .protocol-step {
+      font-size: 1.05rem;
       font-weight: 700;
       color: var(--navy);
-      text-transform: uppercase;
-      margin-bottom: 4px;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 4px;
     }
 
-    .concept-desc {
-      font-size: 0.95rem;
-      color: var(--text-main);
+    .notes-list {
+      list-style-type: none;
+      margin-bottom: 16px;
     }
 
-    /* Historical Notes */
-    .section-title {
-      font-size: 1.1rem;
-      font-weight: 700;
+    .notes-list li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 8px;
+      font-size: 0.96rem;
+    }
+
+    .notes-list li::before {
+      content: "▪";
+      position: absolute;
+      left: 0;
       color: var(--crimson);
-      margin-bottom: 10px;
+      font-size: 1.1rem;
+      line-height: 1;
+      top: 0;
+    }
+
+    /* Inspection Task Boxes */
+    .inspection-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .task-card {
+      background: #FAF7F2;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px;
+    }
+
+    .task-card.art { border-left: 4px solid var(--crimson); }
+    .task-card.politics { border-left: 4px solid var(--navy); }
+
+    .task-title {
+      font-weight: 700;
+      font-size: 0.92rem;
+      margin-bottom: 6px;
       display: flex;
       align-items: center;
       gap: 6px;
     }
 
-    .notes-list {
-      list-style-type: none;
-      margin-bottom: 20px;
+    .task-card.art .task-title { color: var(--crimson); }
+    .task-card.politics .task-title { color: var(--navy); }
+
+    .task-desc {
+      font-size: 0.92rem;
+      color: var(--text-main);
     }
 
-    .notes-list li {
-      position: relative;
+    .task-desc ul {
+      list-style-type: disc;
       padding-left: 20px;
-      margin-bottom: 10px;
-      font-size: 0.98rem;
+      margin-top: 6px;
     }
 
-    .notes-list li::before {
-      content: "■";
-      position: absolute;
-      left: 0;
-      color: var(--crimson);
-      font-size: 0.75rem;
-      top: 5px;
+    .task-desc li { margin-bottom: 4px; }
+
+    /* Debate Box */
+    .debate-box {
+      background: #EEF4FA;
+      border-left: 4px solid var(--navy);
+      padding: 14px 16px;
+      border-radius: 0 6px 6px 0;
+      margin: 18px 0;
     }
 
-    /* Glossary Popover Links */
+    .debate-title {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--navy);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    /* Glossary Term */
     .glossary-term {
       border-bottom: 2px dotted var(--navy);
       color: var(--navy);
@@ -301,7 +339,7 @@
       border-radius: 3px;
     }
 
-    /* Floating Glossary Modal */
+    /* Popover Modal */
     .glossary-popover {
       display: none;
       position: fixed;
@@ -318,9 +356,7 @@
       z-index: 2500;
     }
 
-    .glossary-popover.active {
-      display: block;
-    }
+    .glossary-popover.active { display: block; }
 
     .glossary-popover-header {
       display: flex;
@@ -339,70 +375,14 @@
     }
 
     .glossary-popover-close {
-      background: none;
-      border: none;
-      font-size: 1.4rem;
-      color: var(--text-muted);
-      cursor: pointer;
+      background: none; border: none; font-size: 1.4rem;
+      color: var(--text-muted); cursor: pointer;
     }
 
     .glossary-popover-def {
       font-size: 0.9rem;
       color: var(--text-main);
       line-height: 1.5;
-    }
-
-    /* Accordions */
-    details {
-      background: #FAF7F2;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      margin-bottom: 12px;
-      overflow: hidden;
-    }
-
-    details[open] { background: #FFFFFF; }
-
-    summary {
-      font-weight: 700;
-      font-size: 0.95rem;
-      color: var(--navy);
-      padding: 12px 16px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      list-style: none;
-    }
-
-    summary::-webkit-details-marker { display: none; }
-    summary::after { content: "+"; font-size: 1.3rem; color: var(--crimson); }
-    details[open] summary::after { content: "−"; }
-
-    .accordion-content {
-      padding: 12px 16px 16px 16px;
-      border-top: 1px solid var(--border);
-      font-size: 0.92rem;
-    }
-
-    .accordion-content ul { list-style-type: disc; padding-left: 18px; }
-    .accordion-content li { margin-bottom: 8px; }
-
-    /* Debate Box */
-    .debate-box {
-      background: #EEF4FA;
-      border-left: 4px solid var(--navy);
-      padding: 14px 16px;
-      border-radius: 0 6px 6px 0;
-      margin: 20px 0;
-    }
-
-    .debate-title {
-      font-weight: 700;
-      font-size: 0.95rem;
-      color: var(--navy);
-      margin-bottom: 4px;
-      text-transform: uppercase;
     }
 
     /* Scribe Box */
@@ -431,7 +411,7 @@
 
     .scribe-title {
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--crimson);
       text-transform: uppercase;
     }
@@ -523,7 +503,7 @@
 
     .nav-btn-finish { background: var(--gold); color: #111111; }
 
-    /* Slide-out Menu Drawer */
+    /* Menu Drawer */
     .drawer {
       position: fixed;
       top: 0; right: -100%;
@@ -644,51 +624,48 @@
         </div>
       </div>
       <div class="gallery">
-        <div class="image-wrapper">
-          <img src="Westminster%20and%20Whitehall/1.%20Tudor%20London.jpg" alt="Braun & Hogenberg Map (1572)">
-          <div class="image-caption">Braun & Hogenberg Map of London (1572): Commercial City vs. Royal Westminster</div>
-        </div>
-        <div class="image-wrapper">
-          <img src="Westminster%20and%20Whitehall/1.%20The%20Charing%20Cross.jpg" alt="Old Charing Cross">
-          <div class="image-caption">Old Charing Cross (Engraving published by N. Smith, 1792)</div>
-        </div>
+        <div class="image-wrapper"><img src="Westminster%20and%20Whitehall/1.%20Tudor%20London.jpg" alt="Braun & Hogenberg Map (1572)"><div class="image-caption">Braun & Hogenberg Map (1572): Commercial City vs. Royal Westminster</div></div>
+        <div class="image-wrapper"><img src="Westminster%20and%20Whitehall/1.%20The%20Charing%20Cross.jpg" alt="Old Charing Cross"><div class="image-caption">Old Charing Cross (Engraving published by N. Smith, 1792)</div></div>
       </div>
-      <div class="concept-box">
-        <div class="concept-title">Key Concept: Urban Mortality Deficit</div>
-        <div class="concept-desc">An epidemiological condition where urban deaths consistently outstripped births. Tudor London was a 'demographic sink' that could only grow—and quadrupled in size—due to relentless provincial migration.</div>
-      </div>
-      <div class="section-title">Historical Observations</div>
+
+      <div class="protocol-step">Step 1: Lead Historian Brief (Tudors 1C)</div>
       <ul class="notes-list">
-        <li>England’s population stood at ~2.2 million in 1485 following the Black Death. London held around 50,000 residents before swelling past 200,000 by 1603.</li>
-        <li>High infant mortality claimed 20–30% of children before age one; the capital depended entirely on thousands of provincial migrants annually.</li>
-        <li>The <span class="glossary-term" data-term="Sweating Sickness" data-def="A mysterious, rapidly lethal Tudor epidemic targeting healthy young adults, striking first in 1485.">Sweating Sickness</span> struck in late summer 1485, killing 15,000 Londoners in six weeks and forcing Henry VII to postpone his coronation.</li>
-        <li>Edward I built 12 Eleanor Crosses (1291–1294) to prompt prayers for Queen Eleanor's soul in purgatory. The Puritans destroyed this cross in 1647; today's monument is an 1865 Victorian replacement.</li>
-        <li>The Strand served as the connective spine linking the commercial, self-governing City of London with royal Westminster.</li>
+        <li><strong>A Binary Metropolis:</strong> In 1485, England had a population of only 2.2 million, with around 50,000 living in London. By 1603, London quadrupled to over 200,000, creating two distinct hubs: the commercial <span class="glossary-term" data-term="City of London" data-def="The historic walled square mile governed by the Lord Mayor and trade guilds, distinct from the royal court.">City of London</span> to the east and the royal court at Westminster to the west.</li>
+        <li><strong>The Urban Mortality Deficit:</strong> London was an epidemiological deathtrap. With contaminated wells and open sewage gutters, deaths constantly exceeded births. It only expanded because thousands of young rural migrants arrived every year for apprenticeships.</li>
+        <li><strong>Epidemic Shocks:</strong> Late summer 1485 brought the first outbreak of the <span class="glossary-term" data-term="Sweating Sickness" data-def="A mysterious Tudor disease characterized by rapid fever and sweating, often killing victims within 24 hours.">Sweating Sickness</span>, killing 15,000 Londoners in six weeks and forcing Henry VII to postpone his coronation.</li>
+        <li><strong>The Eleanor Cross:</strong> Built by Edward I in the 1290s to prompt Catholic prayers for his late wife in purgatory. Puritans destroyed it in 1647 as idolatrous; the current cross is an 1865 Victorian Gothic revival monument.</li>
       </ul>
-      <details>
-        <summary>Art History (Ways of Seeing / Renaissance)</summary>
-        <div class="accordion-content">
-          <p style="font-weight:700; color:var(--crimson); margin-bottom:6px;">Gothic Revival & Spatial Representation</p>
-          <ul>
-            <li>Observe E.M. Barry’s 1865 Eleanor Cross: a Victorian Gothic Revival interpretation using medieval decorative canopy work, pinnacles, and heraldry to invent civic tradition.</li>
-            <li>Compare Barry's monument to the 1572 Braun & Hogenberg map: Renaissance bird's-eye cartography used perspective and scale to project urban commercial dominance.</li>
-          </ul>
+
+      <div class="protocol-step">Step 2: Specialist Fieldwork Inspection</div>
+      <div class="inspection-grid">
+        <div class="task-card art">
+          <div class="task-title">🎨 Art History Task: Visual Analysis & Architectural Style</div>
+          <div class="task-desc">
+            Examine Barry's 1865 Eleanor Cross forecourt replica:
+            <ul>
+              <li><strong>Formal Elements:</strong> Identify the vertical gothic features: canopied niches, crocketed pinnacles, and carved heraldic shields.</li>
+              <li><strong>Ways of Seeing:</strong> How does this 19th-century Victorian Gothic monument attempt to invent historical memory in front of a modern Victorian railway terminus?</li>
+            </ul>
+          </div>
         </div>
-      </details>
-      <details>
-        <summary>Politics (British Constitution)</summary>
-        <div class="accordion-content">
-          <p style="font-weight:700; color:var(--navy); margin-bottom:6px;">The Binary Metropolis & Civic Independence</p>
-          <ul>
-            <li>The spatial divide between the financial City (Guildhall) and royal court (Westminster) allowed the merchant oligarchy to develop independent institutional liberties.</li>
-            <li>This corporate autonomy under the Lord Mayor created an economic counterbalance to monarchical prerogative, proving crucial when London financed Parliament against Charles I in 1642.</li>
-          </ul>
+        <div class="task-card politics">
+          <div class="task-title">⚖️ Politics Task: Geography of Power</div>
+          <div class="task-desc">
+            Observe the junction between the Strand (leading to the City) and Whitehall (leading to Parliament):
+            <ul>
+              <li><strong>The Constitution:</strong> Why was it politically significant that the monarch’s government at Westminster was physically separate from London’s financial capital in the City?</li>
+              <li>How does this ancient division foreshadow the concept of the <span class="glossary-term" data-term="Separation of Powers" data-def="The constitutional principle that executive, legislative, and financial powers should not be held by the same authority.">separation of powers</span>?</li>
+            </ul>
+          </div>
         </div>
-      </details>
+      </div>
+
+      <div class="protocol-step">Step 3: Synthesis Street Debate</div>
       <div class="debate-box">
         <div class="debate-title">Street Debate Prompt</div>
-        <p>Did London's explosive demographic growth strengthen the Tudor state through economic vitality, or undermine it by causing severe epidemiological and social instability?</p>
+        <p>Did London's explosive population growth strengthen the Tudor monarchy through taxable trade, or weaken it by creating an uncontrollable city that rivalled the Crown?</p>
       </div>
+
       <div class="scribe-box">
         <div class="scribe-header">
           <div class="scribe-header-left">
@@ -718,42 +695,45 @@
         <div class="image-wrapper"><img src="Westminster%20and%20Whitehall/2.%20York%20Gate.jpg" alt="York Gate at Night"><div class="image-caption">Moonlight view of York Watergate resting directly on the River Thames</div></div>
         <div class="image-wrapper"><img src="Westminster%20and%20Whitehall/2.%20York%20House.jpg" alt="York House"><div class="image-caption">19th-century engraving of the York House Watergate and river stairs</div></div>
       </div>
-      <div class="concept-box">
-        <div class="concept-title">Key Concept: Expropriation & Attainder</div>
-        <div class="concept-desc">The state seizure of property. Henry VIII stripped Catholic bishops of their Strand palaces, while Acts of Attainder declared fallen nobles guilty of treason without trial, forfeiting estates to the Crown.</div>
-      </div>
-      <div class="section-title">Historical Observations</div>
+
+      <div class="protocol-step">Step 1: Lead Historian Brief (Tudors 1C)</div>
       <ul class="notes-list">
-        <li>Before the Reformation, the south side of the Strand was occupied by town palaces of England's wealthiest bishops (Norwich, Chester, Exeter, Durham).</li>
-        <li>Henry VIII seized these episcopal inns and granted them to royal favorites (e.g., Charles Brandon, Edward Seymour, Lord Burghley), creating an aristocratic power corridor.</li>
-        <li>York House was originally Norwich House (c. 1237). Mary I returned it to the Archbishop of York, and in Elizabeth's reign, it housed Keepers of the Great Seal, including Sir Francis Bacon.</li>
-        <li>Because prevailing winds blew west to east, coal smoke drifted toward the City, creating the exclusive, clean 'West End.'</li>
-        <li>The River Thames was the highway of the elite; noblemen bypassed mud-rutted streets by embarking from private watergates in state barges.</li>
+        <li><strong>Expropriation of Church Wealth:</strong> Before 1536, the south side of the Strand was lined with grand town palaces belonging to wealthy Catholic bishops.</li>
+        <li><strong>Redistribution to Courtiers:</strong> During the Dissolution of the Monasteries, Henry VIII seized these properties and handed them to courtiers (e.g. Somerset, Leicester, Burghley) to buy political loyalty.</li>
+        <li><strong>York House Lineage:</strong> Originally Norwich House, Henry gave it to his brother-in-law Charles Brandon. It later became York House, home to Queen Elizabeth’s Lord Keepers, including Francis Bacon.</li>
+        <li><strong>Thames Highway & The Clean West End:</strong> The Strand was often impassable mud. The river was the primary highway for noble state barges. Because prevailing winds blew smoke eastward toward the City, the West End developed as an aristocratic enclave.</li>
       </ul>
-      <details>
-        <summary>Art History (Ways of Seeing / Renaissance)</summary>
-        <div class="accordion-content">
-          <p style="font-weight:700; color:var(--crimson); margin-bottom:6px;">The Italianate Watergate & Vanishing Palaces</p>
-          <ul>
-            <li>Examine the surviving York Watergate (c. 1626, attributed to Inigo Jones or Nicholas Stone): rusticated Tuscan columns, heavy keystones, and the carved scallop shell crest of George Villiers, Duke of Buckingham.</li>
-            <li>Study the riverfront layout: mansions incorporated private stone stairs and watergates designed for high-status theatrical barge arrivals.</li>
-          </ul>
+
+      <div class="protocol-step">Step 2: Specialist Fieldwork Inspection</div>
+      <div class="inspection-grid">
+        <div class="task-card art">
+          <div class="task-title">🎨 Art History Task: Classical Orders & Rustication</div>
+          <div class="task-desc">
+            Examine the stone York Watergate (built c. 1626, attributed to Inigo Jones or Nicholas Stone):
+            <ul>
+              <li><strong>Architectural Language:</strong> Identify the heavy rusticated Tuscan columns and the arched central portal.</li>
+              <li><strong>Baroque / Renaissance Motifs:</strong> Look at the carved scallop shell crest of George Villiers, Duke of Buckingham. How does this river entrance use Italian classicism to display aristocratic grandeur?</li>
+            </ul>
+          </div>
         </div>
-      </details>
-      <details>
-        <summary>Politics (British Constitution)</summary>
-        <div class="accordion-content">
-          <p style="font-weight:700; color:var(--navy); margin-bottom:6px;">Monastic Land and the Limits of Royal Prerogative</p>
-          <ul>
-            <li>When Mary I restored Catholicism in 1553, Parliament recognized papal authority but adamantly refused to return confiscated monastic lands held by gentry and peers.</li>
-            <li>This confirmed that early modern property rights formed an unyielding boundary against both monarchical prerogative and ecclesiastical authority.</li>
-          </ul>
+        <div class="task-card politics">
+          <div class="task-title">⚖️ Politics Task: Property Rights & Royal Prerogative</div>
+          <div class="task-desc">
+            Consider the expropriation of these palaces:
+            <ul>
+              <li><strong>Constitutional Limits:</strong> When Mary I returned England to papal obedience in 1553, Parliament accepted Catholic doctrine but refused to return seized Church lands.</li>
+              <li>What does this reveal about the power of <span class="glossary-term" data-term="Property Rights" data-def="The legal entitlement of individuals to own and control property, which historically limited monarchical power.">private property</span> to limit royal prerogative?</li>
+            </ul>
+          </div>
         </div>
-      </details>
+      </div>
+
+      <div class="protocol-step">Step 3: Synthesis Street Debate</div>
       <div class="debate-box">
         <div class="debate-title">Street Debate Prompt</div>
-        <p>Did the redistribution of Church properties along the Strand enhance royal independence, or did it make the Tudor monarchy a hostage to the landed gentry?</p>
+        <p>Did seizing and redistributing Church property give the Tudor Crown absolute control, or did it make monarchs permanently dependent on the landed gentry?</p>
       </div>
+
       <div class="scribe-box">
         <div class="scribe-header">
           <div class="scribe-header-left">
@@ -781,42 +761,44 @@
       <div class="gallery">
         <div class="image-wrapper"><img src="Westminster%20and%20Whitehall/3.%20Northumberland%20House.jpg" alt="Northumberland House and Charles I Statue"><div class="image-caption">Canaletto, Northumberland House (1752) — Note the Charles I equestrian statue on its pedestal at right</div></div>
       </div>
-      <div class="concept-box">
-        <div class="concept-title">Key Concept: The Great Chain of Being</div>
-        <div class="concept-desc">The early modern worldview holding that God created an immutable, universal hierarchy: God → Angels → Monarch → Nobility → Gentry → Yeomen → Husbandmen → Laborers. Disrupting this chain was regarded as mortal sin.</div>
-      </div>
-      <div class="section-title">Historical Observations</div>
+
+      <div class="protocol-step">Step 1: Lead Historian Brief (Tudors 1C)</div>
       <ul class="notes-list">
-        <li>Cast c. 1633 by French sculptor Hubert Le Sueur, this was the first Renaissance-style equestrian bronze in England.</li>
-        <li>Ordered destroyed by Parliament, metalsmith John Rivet buried it in Holborn while selling brass cutlery claimed to be melted remains. Charles II erected it here in 1675.</li>
-        <li>The statue stands on the original site of the medieval Eleanor Cross, staring down Whitehall toward the Banqueting House—the site of Charles I's execution.</li>
-        <li>Under 1% of the population owned 20–30% of the land and held near 100% of formal power, rationalizing inequality through the <span class="glossary-term" data-term="Great Chain of Being" data-def="A cosmic hierarchy where every creature and rank has an unalterable, God-given place.">Great Chain of Being</span>.</li>
-        <li>As Keith Wrightson highlights, hierarchy was sustained by <span class="glossary-term" data-term="Paternalism & Deference" data-def="The social contract where elites provided food/protection in return for absolute obedience and respect from commoners.">paternalism and deference</span>.</li>
+        <li><strong>A Bronze Survivor:</strong> Cast in 1633 by Hubert Le Sueur, this was England's first Renaissance equestrian statue. During the Civil War, Parliament ordered it melted down, but a metalsmith buried it in Holborn. Charles II erected it here in 1675.</li>
+        <li><strong>The Great Chain of Being:</strong> Tudor and Stuart society rationalized inequality through the <span class="glossary-term" data-term="Great Chain of Being" data-def="The belief that God organized the universe in an unalterable hierarchy from God and angels down to kings, nobles, commoners, and beasts.">Great Chain of Being</span>. Rebellion against social superiors was condemned as a sin against God.</li>
+        <li><strong>Paternalism and Deference:</strong> Less than 1% of the population owned over a quarter of England's land. In exchange for elite protection and grain in lean years (<span class="glossary-term" data-term="Paternalism" data-def="The governing principle where those in authority claim to act in the best interests of their subjects like a father.">paternalism</span>), commoners offered obedience, bowing, and stepping aside in the street (<span class="glossary-term" data-term="Deference" data-def="Humble submission and respect shown to social and political superiors.">deference</span>).</li>
       </ul>
-      <details>
-        <summary>Art History (Ways of Seeing / Renaissance)</summary>
-        <div class="accordion-content">
-          <p style="font-weight:700; color:var(--crimson); margin-bottom:6px;">The Renaissance Equestrian Type</p>
-          <ul>
-            <li>Directly inspired by the Roman imperial statue of Marcus Aurelius and Donatello's *Gattamelata* in Padua.</li>
-            <li>In Renaissance iconography, a monarch commanding a muscular stallion symbolizes reason and divine authority mastering the passions of the body politic.</li>
-          </ul>
+
+      <div class="protocol-step">Step 2: Specialist Fieldwork Inspection</div>
+      <div class="inspection-grid">
+        <div class="task-card art">
+          <div class="task-title">🎨 Art History Task: Equestrian Typology & Renaissance Authority</div>
+          <div class="task-desc">
+            Look up at the bronze statue of Charles I facing down Whitehall:
+            <ul>
+              <li><strong>Classical Prototype:</strong> How does this draw on Donatello’s *Gattamelata* and Roman imperial bronzes of Marcus Aurelius?</li>
+              <li><strong>Iconography:</strong> Notice how the King sits in total composure, commanding the beast with light reins. How does this symbolize reason mastering the unruly body politic?</li>
+            </ul>
+          </div>
         </div>
-      </details>
-      <details>
-        <summary>Politics (British Constitution)</summary>
-        <div class="accordion-content">
-          <p style="font-weight:700; color:var(--navy); margin-bottom:6px;">Divine Right vs. The Rule of Law</p>
-          <ul>
-            <li>Charles I governed under <span class="glossary-term" data-term="Divine Right of Kings" data-def="The political doctrine that monarchs derive authority directly from God, answering to no human parliament.">Divine Right</span>, declaring himself unaccountable to human parliaments or laws.</li>
-            <li>His execution in 1649 dismantled Divine Right, asserting that executive authority in England is bound by contractual constitutional law.</li>
-          </ul>
+        <div class="task-card politics">
+          <div class="task-title">⚖️ Politics Task: Divine Right vs. The Rule of Law</div>
+          <div class="task-desc">
+            Observe the statue staring towards the Banqueting House (his execution site):
+            <ul>
+              <li><strong>The Prerogative:</strong> Charles claimed absolute rule under the <span class="glossary-term" data-term="Divine Right of Kings" data-def="The political doctrine that monarchs derive their authority directly from God, answering to no parliament.">Divine Right of Kings</span>.</li>
+              <li>How did the eventual execution of the King establish the modern constitutional principle of the <span class="glossary-term" data-term="Rule of Law" data-def="The principle that all people and authorities, including the head of state, are subject to the law.">Rule of Law</span>?</li>
+            </ul>
+          </div>
         </div>
-      </details>
+      </div>
+
+      <div class="protocol-step">Step 3: Synthesis Street Debate</div>
       <div class="debate-box">
         <div class="debate-title">Street Debate Prompt</div>
-        <p>Was early modern 'deference' a product of sincere religious belief in the Great Chain of Being, or a pragmatic survival strategy practiced by ordinary people?</p>
+        <p>Was social order in early modern England held together by genuine religious respect for hierarchy, or by the threat of violent state punishment?</p>
       </div>
+
       <div class="scribe-box">
         <div class="scribe-header">
           <div class="scribe-header-left">
@@ -825,7 +807,7 @@
           </div>
           <span class="scribe-status" id="save-status-3">Auto-saved to device</span>
         </div>
-        <textarea id="scribe-3" placeholder="Record group notes here..." oninput="saveNote(3)"></textarea>
+        <textarea id="scribe-3" placeholder="Record group discussion, physical observations, or speak using the Dictate button above..." oninput="saveNote(3)"></textarea>
       </div>
     </article>
 
@@ -842,44 +824,47 @@
         </div>
       </div>
       <div class="gallery">
-        <div class="image-wrapper"><img src="Westminster%20and%20Whitehall/4.%20Palace%20of%20Whitehall%201680.jpg" alt="Fisher's Ground Plan of Whitehall"><div class="image-caption">Fisher’s Ground Plan of Whitehall (1680) showing the labyrinth of courts and royal apartments</div></div>
+        <div class="image-wrapper"><img src="Westminster%20and%20Whitehall/4.%20Palace%20of%20Whitehall%201680.jpg" alt="Fisher's Ground Plan of Whitehall"><div class="image-caption">Fisher’s Ground Plan of Whitehall (1680) showing the maze of courts and royal apartments</div></div>
       </div>
-      <div class="concept-box">
-        <div class="concept-title">Key Concept: Personal Monarchy</div>
-        <div class="concept-desc">A system where political power, patronage, and state decisions flowed directly from physical proximity to the sovereign's person within the chambers of the royal household.</div>
-      </div>
-      <div class="section-title">Historical Observations</div>
+
+      <div class="protocol-step">Step 1: Lead Historian Brief (Tudors 1C)</div>
       <ul class="notes-list">
-        <li>Originally York Place, London seat of the Archbishops of York; expanded into lavish splendor by Cardinal Thomas Wolsey (1514–1529).</li>
-        <li>When Wolsey failed to secure Henry VIII's annulment from Catherine of Aragon in 1529, Henry confiscated the palace under <span class="glossary-term" data-term="Praemunire" data-def="The medieval offense of asserting papal jurisdiction in England over the authority of the King.">Praemunire</span>.</li>
-        <li>Henry expanded Whitehall into Europe's largest palace complex (23 acres, 1,500 rooms), replacing the fire-damaged residential quarters of Westminster Palace.</li>
-        <li>The layout reflected strict hierarchy: Great Hall → Presence Chamber → <span class="glossary-term" data-term="Privy Chamber" data-def="The private inner sanctum of the royal household where the Groom of the Stool controlled intimate access to the King.">Privy Chamber</span>.</li>
-        <li>Henry VIII married Anne Boleyn (1533) and Jane Seymour (1536) here, and died in his Whitehall bedchamber in January 1547.</li>
+        <li><strong>Seizure from Wolsey:</strong> In 1529, when Cardinal Wolsey failed to secure the annulment of Henry VIII’s marriage to Catherine of Aragon, the King stripped him of York Place under <span class="glossary-term" data-term="Praemunire" data-def="The crime of appealing to papal authority over the legal authority of the English Crown.">Praemunire</span>.</li>
+        <li><strong>Europe's Largest Palace:</strong> Renamed Whitehall, Henry transformed it into a 23-acre royal hub with 1,500 rooms, replacing the fire-damaged Palace of Westminster as the monarch’s principal London residence.</li>
+        <li><strong>Spatial Filtering:</strong> Power in a <span class="glossary-term" data-term="Personal Monarchy" data-def="A political system where access to power and decision-making depends on personal proximity to the sovereign.">personal monarchy</span> depended on physical proximity to the King. Whitehall was organized in strict chambers: Great Hall $\rightarrow$ Presence Chamber $\rightarrow$ Privy Chamber.</li>
+        <li><strong>The Heart of Dynasty:</strong> Henry VIII married Anne Boleyn (1533) and Jane Seymour (1536) at Whitehall, and died here in January 1547.</li>
       </ul>
-      <details>
-        <summary>Art History (Ways of Seeing / Renaissance)</summary>
-        <div class="accordion-content">
-          <p style="font-weight:700; color:var(--crimson); margin-bottom:6px;">The Architecture of Magnificence</p>
-          <ul>
-            <li>Tudor palaces abandoned defensive battlements for vast courtyards, decorative brickwork, and broad windows designed for royal display (*magnificentia*).</li>
-            <li>Fisher's 1680 ground plan shows how the palace connected river state apartments with recreational tiltyards, bowling greens, and tennis courts.</li>
-          </ul>
+
+      <div class="protocol-step">Step 2: Specialist Fieldwork Inspection</div>
+      <div class="inspection-grid">
+        <div class="task-card art">
+          <div class="task-title">🎨 Art History Task: The Architecture of Magnificence</div>
+          <div class="task-desc">
+            Inspect the sprawling layout shown in Fisher’s 1680 ground plan:
+            <ul>
+              <li><strong>Domestic Display:</strong> Notice how Tudor palaces replaced fortified military walls with decorative red brick courtyards, large mullioned windows, and recreational spaces (tiltyards and real tennis courts).</li>
+              <li>How was Renaissance *magnificentia* (splendour) used to intimidate visiting ambassadors?</li>
+            </ul>
+          </div>
         </div>
-      </details>
-      <details>
-        <summary>Politics (British Constitution)</summary>
-        <div class="accordion-content">
-          <p style="font-weight:700; color:var(--navy); margin-bottom:6px;">Household Governance to Institutional State</p>
-          <ul>
-            <li>Under Thomas Cromwell's 1530s administration (G.R. Elton's 'Tudor Revolution in Government'), informal rule began shifting toward a bureaucratic Privy Council.</li>
-            <li>This marks the earliest architectural and administrative transition from the monarch’s domestic court into the modern Whitehall civil service.</li>
-          </ul>
+        <div class="task-card politics">
+          <div class="task-title">⚖️ Politics Task: Household vs. Institutional Executive</div>
+          <div class="task-desc">
+            Consider the layout of government offices:
+            <ul>
+              <li><strong>Cabinet Government:</strong> Under Thomas Cromwell, informal power held by household servants (like the Groom of the Stool) was reorganized into an institutional <span class="glossary-term" data-term="Privy Council" data-def="A select body of senior advisers appointed by the monarch to oversee executive state administration.">Privy Council</span>.</li>
+              <li>How does the evolution of the royal court at Whitehall parallel the modern UK executive and Cabinet?</li>
+            </ul>
+          </div>
         </div>
-      </details>
+      </div>
+
+      <div class="protocol-step">Step 3: Synthesis Street Debate</div>
       <div class="debate-box">
         <div class="debate-title">Street Debate Prompt</div>
-        <p>Did the concentration of political power within the King's intimate Privy Chamber make Tudor government more decisive, or dangerously vulnerable to court faction?</p>
+        <p>Did concentrating government power inside the King’s private bedchamber make the Tudor state more decisive, or dangerously corrupt?</p>
       </div>
+
       <div class="scribe-box">
         <div class="scribe-header">
           <div class="scribe-header-left">
@@ -888,7 +873,7 @@
           </div>
           <span class="scribe-status" id="save-status-4">Auto-saved to device</span>
         </div>
-        <textarea id="scribe-4" placeholder="Record group notes here..." oninput="saveNote(4)"></textarea>
+        <textarea id="scribe-4" placeholder="Record group discussion, physical observations, or speak using the Dictate button above..." oninput="saveNote(4)"></textarea>
       </div>
     </article>
 
@@ -907,42 +892,45 @@
       <div class="gallery">
         <div class="image-wrapper"><img src="Westminster%20and%20Whitehall/5.%20Apotheosis%20of%20James%20I%20-%20Reubens.jpg" alt="Rubens Banqueting Ceiling"><div class="image-caption">Peter Paul Rubens, The Apotheosis of James I (Central Oval Ceiling Canvas, 1636)</div></div>
       </div>
-      <div class="concept-box">
-        <div class="concept-title">Key Concept: Palladianism & Absolutism</div>
-        <div class="concept-desc">An architectural style based on classical symmetry and proportions derived from Andrea Palladio and Vitruvius, used by Stuart monarchs to project imperial majesty.</div>
-      </div>
-      <div class="section-title">Historical Observations</div>
+
+      <div class="protocol-step">Step 1: Lead Historian Brief (Tudors 1C)</div>
       <ul class="notes-list">
-        <li>Completed in 1622 by Inigo Jones for James I at a cost of £15,718, this was the first purely neoclassical building in England.</li>
-        <li>Jones mastered Vitruvian rules: a rugged lower Ionic order balances an ornate upper Corinthian order, capped with alternating pediments.</li>
-        <li>In 1636, Charles I installed nine ceiling canvases painted by Flemish Baroque master Peter Paul Rubens.</li>
-        <li>The central panel, *The Apotheosis of James I*, shows Charles's father being carried to heaven by Justice, Religion, and Truth, celebrating Divine Right.</li>
-        <li>Charles I walked beneath this ceiling on January 30, 1649, on his way out of a window to the execution scaffold.</li>
+        <li><strong>An Architectural Revolution:</strong> Completed in 1622 by Inigo Jones for James I, this was England's first purely classical building, replacing older timber and brick Tudor halls.</li>
+        <li><strong>Rubens's Ceiling:</strong> In 1636, Charles I installed nine monumental canvases painted by Flemish master Peter Paul Rubens.</li>
+        <li><strong>Apotheosis of James I:</strong> The central oval canvas depicts Charles's father being carried up to heaven by allegorical figures of Justice, Truth, and Peace, visually celebrating absolute Stuart monarchy.</li>
+        <li><strong>The Irony of History:</strong> On 30 January 1649, Charles I was led directly beneath these paintings on his way out of an opened window to the execution scaffold.</li>
       </ul>
-      <details>
-        <summary>Art History (Ways of Seeing / Renaissance)</summary>
-        <div class="accordion-content">
-          <p style="font-weight:700; color:var(--crimson); margin-bottom:6px;">Baroque Illusionism vs. Palladian Restraint</p>
-          <ul>
-            <li>Contrast Inigo Jones’s restrained, rational exterior mathematics with Rubens’s dynamic, Counter-Reformation Baroque ceiling inside.</li>
-            <li>Rubens employs dynamic foreshortening (*di sotto in sù*), rich color, and flying putti to dissolve the ceiling into celestial space.</li>
-          </ul>
+
+      <div class="protocol-step">Step 2: Specialist Fieldwork Inspection</div>
+      <div class="inspection-grid">
+        <div class="task-card art">
+          <div class="task-title">🎨 Art History Task: Classical Orders & Baroque Allegory</div>
+          <div class="task-desc">
+            Examine the stone exterior of the Banqueting House:
+            <ul>
+              <li><strong>The Classical Orders:</strong> Identify the lower Ionic pilasters and upper Corinthian columns. Notice the alternating triangular and segmental pediments over the windows.</li>
+              <li><strong>Baroque Illusion:</strong> Contrast Jones’s calm, restrained <span class="glossary-term" data-term="Palladianism" data-def="A classical architectural style based on symmetry and mathematical proportion derived from Andrea Palladio.">Palladian architecture</span> with Rubens’s dramatic Baroque ceiling inside. How does Rubens use dynamic angles and rich color to overwhelm the viewer?</li>
+            </ul>
+          </div>
         </div>
-      </details>
-      <details>
-        <summary>Politics (British Constitution)</summary>
-        <div class="accordion-content">
-          <p style="font-weight:700; color:var(--navy); margin-bottom:6px;">Court Ideology vs. Country Resentment</p>
-          <ul>
-            <li>The lavish Banqueting House alienated Puritan Parliamentarians, who viewed its Italianate style and Rubens ceiling as evidence of Catholic tyranny.</li>
-            <li>Charles I’s Personal Rule (1629–1640) was centered here, showing how royal expenditure clashed directly with Parliament’s exclusive power to grant taxation.</li>
-          </ul>
+        <div class="task-card politics">
+          <div class="task-title">⚖️ Politics Task: Court vs. Country Conflict</div>
+          <div class="task-desc">
+            Consider the political impact of this building in the 1630s:
+            <ul>
+              <li><strong>Royal Prerogative:</strong> How did Charles I fund lavish court culture during his 11 years of Personal Rule without calling Parliament?</li>
+              <li>Why did Puritan MPs view this building's Italian design and Rubens ceiling as evidence of Catholic, absolutist tyranny?</li>
+            </ul>
+          </div>
         </div>
-      </details>
+      </div>
+
+      <div class="protocol-step">Step 3: Synthesis Street Debate</div>
       <div class="debate-box">
         <div class="debate-title">Street Debate Prompt</div>
-        <p>Can high visual art and monumental architecture successfully legitimize royal power, or does it inevitably provoke populist political backlash?</p>
+        <p>Can monumental art and architecture genuinely persuade people to accept a king's authority, or does excessive royal display always trigger rebellion?</p>
       </div>
+
       <div class="scribe-box">
         <div class="scribe-header">
           <div class="scribe-header-left">
@@ -951,11 +939,11 @@
           </div>
           <span class="scribe-status" id="save-status-5">Auto-saved to device</span>
         </div>
-        <textarea id="scribe-5" placeholder="Record group notes here..." oninput="saveNote(5)"></textarea>
+        <textarea id="scribe-5" placeholder="Record group discussion, physical observations, or speak using the Dictate button above..." oninput="saveNote(5)"></textarea>
       </div>
     </article>
 
-    <!-- STOP 6 (With Charles I / Charles 1 Fallback) -->
+    <!-- STOP 6 -->
     <article class="card stop-section" id="stop-6">
       <div class="stop-header">
         <span class="stop-badge">Stop 6</span>
@@ -975,42 +963,45 @@
           <div class="image-caption">Contemporary Broadsheet Print depicting the public execution outside Banqueting House (1649)</div>
         </div>
       </div>
-      <div class="concept-box">
-        <div class="concept-title">Key Concept: Regicide</div>
-        <div class="concept-desc">The formal, public trial and execution of an anointed monarch by a court purporting to represent the sovereign authority of the people.</div>
-      </div>
-      <div class="section-title">Historical Observations</div>
+
+      <div class="protocol-step">Step 1: Lead Historian Brief (Tudors 1C)</div>
       <ul class="notes-list">
-        <li>On Tuesday, January 30, 1649, Charles I walked from St James’s Palace across the park to Whitehall, asking for two shirts so the cold would not make him shiver.</li>
-        <li>A scaffold draped in black was erected outside the first floor of the Banqueting House, surrounded by ranks of cavalry to hold back the immense crowd.</li>
-        <li>On the scaffold, Charles declared: 'A subject and a sovereign are clean different things'—reaffirming the static cosmic hierarchy to his dying breath.</li>
-        <li>Severed with a single blow, his head was held aloft; an eyewitness recorded: 'There was such a groan by the thousands then present as I never heard before.'</li>
-        <li>This event severed England's political theology; sovereign authority was dragged from divine cosmic order into human legal accountability.</li>
+        <li><strong>The Morning Walk:</strong> On Tuesday, 30 January 1649, Charles I walked from St James’s Palace across the park to Whitehall, asking for two shirts so the winter cold would not make him shiver and seem afraid.</li>
+        <li><strong>The Scaffolding Theatre:</strong> A scaffold draped in black cloth was built right outside the first-floor windows of the Banqueting House, surrounded by soldiers to keep back the crowd.</li>
+        <li><strong>The King's Final Speech:</strong> Charles looked out and asserted: <em>"A subject and a sovereign are clean different things."</em> Laying his head on a low block, he was beheaded with a single clean blow.</li>
+        <li><strong>A Groan from the Multitude:</strong> An eyewitness noted there was <em>"such a groan by the thousands then present as I never heard before."</em> The execution smashed the sacred belief in the Great Chain of Being.</li>
       </ul>
-      <details>
-        <summary>Art History (Ways of Seeing / Renaissance)</summary>
-        <div class="accordion-content">
-          <p style="font-weight:700; color:var(--crimson); margin-bottom:6px;">Visual Propaganda & The Cult of Martyrdom</p>
-          <ul>
-            <li>Analyze the broadsheet print: note the stage-like scaffold, masked executioners, and surrounding sea of roundhead helmets.</li>
-            <li>Compare this with the royalist frontispiece to the *Eikon Basilike* (1649), which depicted Charles swapping his earthly crown for a heavenly crown of glory.</li>
-          </ul>
+
+      <div class="protocol-step">Step 2: Specialist Fieldwork Inspection</div>
+      <div class="inspection-grid">
+        <div class="task-card art">
+          <div class="task-title">🎨 Art History Task: Broadsheets & The Cult of Martyrdom</div>
+          <div class="task-desc">
+            Study the contemporary print of the execution:
+            <ul>
+              <li><strong>Visual Narrative:</strong> Notice the composition: the raised scaffold, the masked executioner, and the sea of spectators beneath.</li>
+              <li><strong>Martyrdom Iconography:</strong> How was this catastrophic visual event counteracted by Royalist prints (such as the *Eikon Basilike* frontispiece) showing Charles trading his earthly crown for a crown of thorns?</li>
+            </ul>
+          </div>
         </div>
-      </details>
-      <details>
-        <summary>Politics (British Constitution)</summary>
-        <div class="accordion-content">
-          <p style="font-weight:700; color:var(--navy); margin-bottom:6px;">The Birth of Parliamentary Sovereignty</p>
-          <ul>
-            <li>The execution shattered the legal fiction that the King could do no wrong, leading directly to the Commonwealth under Oliver Cromwell.</li>
-            <li>When the monarchy was restored in 1660 and revised in the 1689 Bill of Rights, the principle of **King-in-Parliament** permanently replaced unfettered royal prerogative.</li>
-          </ul>
+        <div class="task-card politics">
+          <div class="task-title">⚖️ Politics Task: The Rupture of Sovereign Immunity</div>
+          <div class="task-desc">
+            Stand where the scaffold was erected:
+            <ul>
+              <li><strong>Constitutional Turning Point:</strong> For centuries, the law held that the monarch could do no wrong. Parliament broke this by trying and executing their own king for <span class="glossary-term" data-term="High Treason" data-def="The crime of betraying the nation or sovereign, historically punished by death and loss of estate.">high treason</span>.</li>
+              <li>How did this act pave the way for modern <span class="glossary-term" data-term="Parliamentary Sovereignty" data-def="The principle that Parliament is the supreme legal authority in the UK, able to make or overturn any law.">parliamentary sovereignty</span> established in the 1689 Bill of Rights?</li>
+            </ul>
+          </div>
         </div>
-      </details>
+      </div>
+
+      <div class="protocol-step">Step 3: Synthesis Street Debate</div>
       <div class="debate-box">
         <div class="debate-title">Street Debate Prompt</div>
-        <p>Was the execution of Charles I a tyrannical military coup, or the necessary founding act of modern constitutional democracy?</p>
+        <p>Was the execution of Charles I a lawful trial establishing that rulers are accountable to their people, or an illegal military coup?</p>
       </div>
+
       <div class="scribe-box">
         <div class="scribe-header">
           <div class="scribe-header-left">
@@ -1019,7 +1010,7 @@
           </div>
           <span class="scribe-status" id="save-status-6">Auto-saved to device</span>
         </div>
-        <textarea id="scribe-6" placeholder="Record group notes here..." oninput="saveNote(6)"></textarea>
+        <textarea id="scribe-6" placeholder="Record group discussion, physical observations, or speak using the Dictate button above..." oninput="saveNote(6)"></textarea>
       </div>
     </article>
 
@@ -1039,42 +1030,45 @@
         <div class="image-wrapper"><img src="Westminster%20and%20Whitehall/7.%20Holbein%20Gate.jpg" alt="Holbein Gate Engraving"><div class="image-caption">George Vertue’s 1725 Engraving of the Holbein Gate (demolished 1759)</div></div>
         <div class="image-wrapper"><img src="Westminster%20and%20Whitehall/7.%20Henry%20VIII%20Marriage%20Holbein%20Gate.jpg" alt="Secret Marriage of Anne Boleyn"><div class="image-caption">19th-century woodcut depicting the secret marriage of Henry VIII and Anne Boleyn</div></div>
       </div>
-      <div class="concept-box">
-        <div class="concept-title">Key Concept: The Imperial Crown & Royal Supremacy</div>
-        <div class="concept-desc">The constitutional doctrine articulated in 1533 declaring England an 'Empire' recognizing no superior authority on earth—clerical or secular—thereby establishing the Royal Supremacy.</div>
-      </div>
-      <div class="section-title">Historical Observations</div>
+
+      <div class="protocol-step">Step 1: Lead Historian Brief (Tudors 1C)</div>
       <ul class="notes-list">
-        <li>Erected in 1532 across the muddy public road running between London and Westminster, connecting the palace to western sports facilities.</li>
-        <li>On January 25, 1533, Henry VIII secretly married Anne Boleyn in an upper chamber; secrecy was vital as his divorce from Catherine of Aragon was incomplete and Anne was pregnant.</li>
-        <li>This ceremony accelerated the Break with Rome, prompting the *Act in Restraint of Appeals* (1533) and the *Act of Supremacy* (1534).</li>
-        <li>The gatehouse allowed the King to cross between his chambers, tiltyard, and tennis courts without mingling with common subjects on the foul street below.</li>
-        <li>It survived the Whitehall fire of 1698 but was demolished in 1759 to widen Whitehall for carriage traffic.</li>
+        <li><strong>Bridging Court and Leisure:</strong> Built by Henry VIII in 1532 across the muddy public road, this gatehouse linked the eastern riverfront apartments with western tiltyards and tennis courts without the King having to walk in the foul street.</li>
+        <li><strong>The Secret Marriage:</strong> Before dawn on 25 January 1533, Henry VIII secretly married Anne Boleyn in an upper chamber here. Secrecy was critical: Henry was still legally married to Catherine of Aragon, but Anne was already pregnant with Elizabeth.</li>
+        <li><strong>Break with Rome:</strong> To declare this marriage legal and ensure his child's legitimacy, Henry and Thomas Cromwell passed the 1533 *Act in Restraint of Appeals*, declaring England an independent empire subject to no foreign pope.</li>
+        <li><strong>Demolition:</strong> The gate survived the 1698 palace fire but was torn down in 1759 to widen Whitehall for modern traffic.</li>
       </ul>
-      <details>
-        <summary>Art History (Ways of Seeing / Renaissance)</summary>
-        <div class="accordion-content">
-          <p style="font-weight:700; color:var(--crimson); margin-bottom:6px;">Vernacular Gothic meets Italian Renaissance</p>
-          <ul>
-            <li>The gate combined English Perpendicular Gothic (battlements, octagonal turrets, chequerboard flintwork) with Italian Renaissance classicism.</li>
-            <li>Notice the classical terracotta medallion roundels of Roman emperors set into the facade, crafted by Florentine sculptor Pietro Torrigiano.</li>
-          </ul>
+
+      <div class="protocol-step">Step 2: Specialist Fieldwork Inspection</div>
+      <div class="inspection-grid">
+        <div class="task-card art">
+          <div class="task-title">🎨 Art History Task: Tudor Gothic meets Florentine Renaissance</div>
+          <div class="task-desc">
+            Examine George Vertue’s 1725 engraving of the gate:
+            <ul>
+              <li><strong>Gothic Foundations:</strong> Spot the battlemented parapet, octagonal corner turrets, and chequerboard flint-and-stone patterns.</li>
+              <li><strong>Florentine Accents:</strong> Look closely at the circular terracotta portrait medallions of Roman emperors, sculpted by Pietro Torrigiano. Why did Henry combine traditional English castle design with fashionable Italian Renaissance ornaments?</li>
+            </ul>
+          </div>
         </div>
-      </details>
-      <details>
-        <summary>Politics (British Constitution)</summary>
-        <div class="accordion-content">
-          <p style="font-weight:700; color:var(--navy); margin-bottom:6px;">Statute Law as Supreme Legal Instrument</p>
-          <ul>
-            <li>To make his marriage to Anne legitimate, Henry VIII utilized parliamentary statutes rather than personal proclamation.</li>
-            <li>By employing Parliament to dissolve the Catholic Church in England, Henry established that statutory law reigned supreme.</li>
-          </ul>
+        <div class="task-card politics">
+          <div class="task-title">⚖️ Politics Task: Statute Law & The Imperial Crown</div>
+          <div class="task-desc">
+            Consider the legal steps taken to validate the secret marriage held here:
+            <ul>
+              <li><strong>Statute Power:</strong> Instead of relying only on royal proclamation, Henry used Acts of Parliament to dissolve Church power in England.</li>
+              <li>How did this establish <span class="glossary-term" data-term="Statute Law" data-def="Law enacted by Parliament, standing as the highest source of constitutional law in the UK.">statute law</span> as the highest authority in the land?</li>
+            </ul>
+          </div>
         </div>
-      </details>
+      </div>
+
+      <div class="protocol-step">Step 3: Synthesis Street Debate</div>
       <div class="debate-box">
         <div class="debate-title">Street Debate Prompt</div>
-        <p>Was the English Reformation primarily driven by high theological conviction, or was it a pragmatic dynastic strategy to secure a male heir?</p>
+        <p>Was the English Reformation an act of national independence by the English state, or an act of personal desperation by a monarch seeking a male heir?</p>
       </div>
+
       <div class="scribe-box">
         <div class="scribe-header">
           <div class="scribe-header-left">
@@ -1083,7 +1077,7 @@
           </div>
           <span class="scribe-status" id="save-status-7">Auto-saved to device</span>
         </div>
-        <textarea id="scribe-7" placeholder="Record group notes here..." oninput="saveNote(7)"></textarea>
+        <textarea id="scribe-7" placeholder="Record group discussion, physical observations, or speak using the Dictate button above..." oninput="saveNote(7)"></textarea>
       </div>
     </article>
 
@@ -1102,42 +1096,45 @@
       <div class="gallery">
         <div class="image-wrapper"><img src="Westminster%20and%20Whitehall/8.%20Henry%20VIII%20Wine%20Cellar.jpg" alt="Henry VIII's Wine Cellar"><div class="image-caption">Henry VIII’s vaulted Tudor brick wine cellar, preserved deep beneath the MoD</div></div>
       </div>
-      <div class="concept-box">
-        <div class="concept-title">Key Concept: Sumptuary Laws & Consumption</div>
-        <div class="concept-desc">Statutes that strictly regulated diet, apparel, and luxuries by social rank to enforce visible class distinctions and prevent commoners from emulating elite consumption.</div>
-      </div>
-      <div class="section-title">Historical Observations</div>
+
+      <div class="protocol-step">Step 1: Lead Historian Brief (Tudors 1C)</div>
       <ul class="notes-list">
-        <li>Constructed in 1536 under Wolsey’s original brick structures, this subterranean brick vault measures 70 by 30 feet.</li>
-        <li>Whitehall received over 300 tuns of claret annually shipped directly from Gascony via the Thames; fresh wine was sharp and acidic.</li>
-        <li>In Tudor society, drink marked social rank: commoners relied on ale and beer for calories and clean hydration, while the court elite drank imported wine sweetened into *hippocras*.</li>
-        <li>Elite diets were heavy in imported sugar, leaving courtiers and Elizabeth I with rotten, blackened teeth—a physical marker of high status.</li>
-        <li>In 1949, during construction of the Ministry of Defence, engineers encased the 800-ton cellar in steel and concrete, lowering it 19 feet and shifting it 9 feet west to preserve it.</li>
+        <li><strong>Elite Hospitality:</strong> Constructed in 1536 under Wolsey’s original brick vaults, this cellar measured 70 by 30 feet to supply massive royal feasts.</li>
+        <li><strong>Gascony Claret:</strong> Whitehall received over 300 massive tuns of wine every year shipped from Gascony up the Thames. Because fresh wine soured quickly, cellarmen sweetened it with spices and sugar to make *hippocras*.</li>
+        <li><strong>Class and Diet:</strong> While courtiers drank imported wine and ate sugar-heavy feasts, ordinary laborers drank ale for hydration and ate beans and coarse bread. Elite sugar consumption caused rotting black teeth, seen in portraits of Elizabeth I.</li>
+        <li><strong>Preserved by Engineering:</strong> In 1949, engineers moved the entire 800-ton brick cellar 19 feet down and 9 feet west on steel rails so the modern Ministry of Defence could be built around it.</li>
       </ul>
-      <details>
-        <summary>Art History (Ways of Seeing / Renaissance)</summary>
-        <div class="accordion-content">
-          <p style="font-weight:700; color:var(--crimson); margin-bottom:6px;">Tudor Brickwork & Ribbed Vaulting</p>
-          <ul>
-            <li>Observe the low-springing brick barrel and ribbed vaults supported by short stone columns: an example of English late medieval engineering influenced by Low Countries brick masons.</li>
-            <li>In early Tudor England, high-grade brick masonry was an elite luxury material reserved for royal palaces before becoming common in domestic construction.</li>
-          </ul>
+
+      <div class="protocol-step">Step 2: Specialist Fieldwork Inspection</div>
+      <div class="inspection-grid">
+        <div class="task-card art">
+          <div class="task-title">🎨 Art History Task: Brick Vaulting & Imported Craftsmanship</div>
+          <div class="task-desc">
+            Examine the photograph of the interior cellar:
+            <ul>
+              <li><strong>Vaulting System:</strong> Identify the low ribbed vaults supported by short octagonal stone piers.</li>
+              <li><strong>Material Status:</strong> In early Tudor England, fine brick masonry was an imported prestige technique from the Low Countries, reserved for royal palaces before becoming a common building material.</li>
+            </ul>
+          </div>
         </div>
-      </details>
-      <details>
-        <summary>Politics (British Constitution)</summary>
-        <div class="accordion-content">
-          <p style="font-weight:700; color:var(--navy); margin-bottom:6px;">From Royal Household to Ministerial Bureaucracy</p>
-          <ul>
-            <li>The physical site of royal feasting and private household hospitality now sits directly beneath the Ministry of Defence.</li>
-            <li>This encapsulates the constitutional shift from personal household government to the modern, bureaucratic executive civil service.</li>
-          </ul>
+        <div class="task-card politics">
+          <div class="task-title">⚖️ Politics Task: From Royal Household to Civil Service</div>
+          <div class="task-desc">
+            Stand outside the Ministry of Defence main building:
+            <ul>
+              <li><strong>Executive Evolution:</strong> How did an estate originally built for royal entertaining and feasting transform into the administrative headquarters of the modern defense state?</li>
+              <li>Consider the concept of <span class="glossary-term" data-term="Executive Dominance" data-def="A political situation where the governing executive branch exercises immense, concentrated control over state machinery and parliament.">executive dominance</span> in modern UK politics.</li>
+            </ul>
+          </div>
         </div>
-      </details>
+      </div>
+
+      <div class="protocol-step">Step 3: Synthesis Street Debate</div>
       <div class="debate-box">
         <div class="debate-title">Street Debate Prompt</div>
-        <p>Did extreme disparities in physical diet, dress, and health between the Tudor elite and common laborers strengthen paternalistic stability, or fuel popular unrest?</p>
+        <p>Did the extreme inequality in diet and luxury between the Tudor court and the working population undermine the moral claim that the monarchy governed for the good of all?</p>
       </div>
+
       <div class="scribe-box">
         <div class="scribe-header">
           <div class="scribe-header-left">
@@ -1146,7 +1143,7 @@
           </div>
           <span class="scribe-status" id="save-status-8">Auto-saved to device</span>
         </div>
-        <textarea id="scribe-8" placeholder="Record group notes here..." oninput="saveNote(8)"></textarea>
+        <textarea id="scribe-8" placeholder="Record group discussion, physical observations, or speak using the Dictate button above..." oninput="saveNote(8)"></textarea>
       </div>
     </article>
 
@@ -1165,42 +1162,45 @@
       <div class="gallery">
         <div class="image-wrapper"><img src="Westminster%20and%20Whitehall/9.%20Palace%20of%20Westminster%20East%20with%20Banqueting%20House.jpg" alt="Great Hall Reconstruction"><div class="image-caption">Reconstruction drawing of the Tudor Whitehall palace riverfront and Great Hall</div></div>
       </div>
-      <div class="concept-box">
-        <div class="concept-title">Key Concept: The 'Fourth Sort of Men'</div>
-        <div class="concept-desc">Sir Thomas Smith’s Elizabethan classification for day laborers, poor husbandmen, and cottagers who 'have no voice nor authority in our commonwealth... only to be ruled and not to rule.'</div>
-      </div>
-      <div class="section-title">Historical Observations</div>
+
+      <div class="protocol-step">Step 1: Lead Historian Brief (Tudors 1C)</div>
       <ul class="notes-list">
-        <li>The Great Hall was the social heart of Tudor court life, where ambitious provincial gentry networked, sought office, and competed for aristocratic patrons.</li>
-        <li>Shakespeare's *The Tempest* was performed here before James I on Hallowmas Night (Nov 1), 1611, exploring themes of legitimate sovereignty and natural hierarchy.</li>
-        <li>Beyond the Great Hall lay the Guard Chamber, and beyond that the King's private lodging—the ultimate objective for any aspiring courtier.</li>
-        <li>While courtiers feasted here, Keith Wrightson’s research shows England's 'fourth sort' lived with proud self-worth: a London craftsman in 1589 stated he was worth 'a couple of pence, if every bird had his feather.'</li>
-        <li>Working people proudly declared they were 'beholden to no man' and 'honest poor neighbors,' resisting the elite view that they were merely passive drudges.</li>
+        <li><strong>The Court Networking Machine:</strong> Before the Banqueting House was built, this hall was the public stage of court life where gentry networked, sought offices, and competed for marriage contracts.</li>
+        <li><strong>Shakespeare at Court:</strong> On 1 November 1611, Shakespeare’s <em>The Tempest</em> had its first recorded performance here before King James I, celebrating the restoration of natural order and legitimate princely rule.</li>
+        <li><strong>Sir Thomas Smith’s Four Sorts:</strong> In the 1560s, Tudor writer Sir Thomas Smith divided England into Gentlemen, Citizens, Yeomen, and the <span class="glossary-term" data-term="Fourth Sort of Men" data-def="Sir Thomas Smith's term for day laborers, cottagers, and the poor who had 'no voice nor authority in our commonwealth.'">Fourth Sort</span> who 'have no voice nor authority in our commonwealth.'</li>
+        <li><strong>Common Dignity:</strong> Keith Wrightson’s court records reveal commoners took pride in their self-reliance: one 1589 craftsman declared he was worth <em>'a couple of pence, if every bird had his feather'</em> (he owed no one anything).</li>
       </ul>
-      <details>
-        <summary>Art History (Ways of Seeing / Renaissance)</summary>
-        <div class="accordion-content">
-          <p style="font-weight:700; color:var(--crimson); margin-bottom:6px;">The Perspective of Court Spectacle</p>
-          <ul>
-            <li>Tudor Great Halls featured timber hammerbeam roofs with central hearths, which gradually transitioned into Jacobean proscenium-arch court masques.</li>
-            <li>In Inigo Jones's stage designs, single-point perspective was mathematically configured so that visual illusions resolved perfectly only from the King’s royal chair.</li>
-          </ul>
+
+      <div class="protocol-step">Step 2: Specialist Fieldwork Inspection</div>
+      <div class="inspection-grid">
+        <div class="task-card art">
+          <div class="task-title">🎨 Art History Task: The Optical Politics of Staging</div>
+          <div class="task-desc">
+            Consider how court entertainment was staged inside a Great Hall:
+            <ul>
+              <li><strong>Perspective Staging:</strong> In Jacobean court masques designed by Inigo Jones, single-point linear perspective was arranged so the illusion only resolved perfectly from the King’s royal chair.</li>
+              <li>How does this technique make the monarch the optical and ideological center of the universe?</li>
+            </ul>
+          </div>
         </div>
-      </details>
-      <details>
-        <summary>Politics (British Constitution)</summary>
-        <div class="accordion-content">
-          <p style="font-weight:700; color:var(--navy); margin-bottom:6px;">Patronage Networks & Factional Balance</p>
-          <ul>
-            <li>Tudor monarchs maintained stability by balancing competing court factions (e.g., Cecil vs. Essex under Elizabeth; Somerset vs. Northumberland under Edward VI).</li>
-            <li>Monopolies, titles, and landed offices granted in this hall were essential political currency used by the Crown to maintain the loyalty of the provincial gentry.</li>
-          </ul>
+        <div class="task-card politics">
+          <div class="task-title">⚖️ Politics Task: Factions, Lobbying & Patronage</div>
+          <div class="task-desc">
+            Observe the courtyard where courtiers waited for entry:
+            <ul>
+              <li><strong>Patron-Client Networks:</strong> Tudor monarchs managed regional power by granting trade monopolies and titles to loyal allies.</li>
+              <li>How does this system of court patronage compare to modern lobbying and political donations in the UK Parliament?</li>
+            </ul>
+          </div>
         </div>
-      </details>
+      </div>
+
+      <div class="protocol-step">Step 3: Synthesis Street Debate</div>
       <div class="debate-box">
         <div class="debate-title">Street Debate Prompt</div>
-        <p>Were Tudor commoners entirely excluded from power, or did their communal solidarity and participation in parish offices give them a hidden voice?</p>
+        <p>Were ordinary Tudor working people entirely excluded from power, or did local communal networks give them an informal voice that monarchs could not ignore?</p>
       </div>
+
       <div class="scribe-box">
         <div class="scribe-header">
           <div class="scribe-header-left">
@@ -1209,7 +1209,7 @@
           </div>
           <span class="scribe-status" id="save-status-9">Auto-saved to device</span>
         </div>
-        <textarea id="scribe-9" placeholder="Record group notes here..." oninput="saveNote(9)"></textarea>
+        <textarea id="scribe-9" placeholder="Record group discussion, physical observations, or speak using the Dictate button above..." oninput="saveNote(9)"></textarea>
       </div>
     </article>
 
@@ -1228,42 +1228,45 @@
       <div class="gallery">
         <div class="image-wrapper"><img src="Westminster%20and%20Whitehall/10.%20Tyndale%20Execution.jpg" alt="Martyrdom of Tyndale"><div class="image-caption">Foxe’s Book of Martyrs woodcut: William Tyndale strangled and burned at the stake (1536)</div></div>
       </div>
-      <div class="concept-box">
-        <div class="concept-title">Key Concept: Vernacular Scripture & Print Culture</div>
-        <div class="concept-desc">Translating sacred texts into the common tongue (vernacular) and disseminating them via movable-type print, breaking the ecclesiastical monopoly on Latin learning.</div>
-      </div>
-      <div class="section-title">Historical Observations</div>
+
+      <div class="protocol-step">Step 1: Lead Historian Brief (Tudors 1C)</div>
       <ul class="notes-list">
-        <li>Under the 1408 Constitutions of Oxford, translating the Bible into English without episcopal license was punishable by burning as heresy.</li>
-        <li>William Tyndale fled to Germany in 1524, producing the first English New Testament translated directly from Greek and Hebrew, printed using movable type.</li>
-        <li>Smuggled into England inside cloth bales, his pocket bibles circulated widely among London merchants and apprentices; Bishop Tunstall burned copies at St Paul's Cross.</li>
-        <li>Tyndale was martyred near Brussels in 1536, praying: 'Lord, open the King of England’s eyes!' By 1539, Henry VIII authorized the *Great Bible*, based on Tyndale's text.</li>
-        <li>Keith Wrightson shows illiteracy among yeomen dropped from 55% in the 1580s to 39% by 1610; Foxe's *Book of Martyrs* (1563) cemented an anti-Catholic national identity.</li>
+        <li><strong>Banned Words:</strong> Under medieval heresy laws, translating the Bible into English without permission was punishable by death. Tyndale fled to Germany in 1524 to translate the New Testament directly from Greek and Hebrew.</li>
+        <li><strong>Smuggled Truth:</strong> Printed copies were smuggled into London inside cloth bales. Bishop Tunstall bought up copies to burn at St Paul's Cross, which ironically helped Tyndale fund improved editions.</li>
+        <li><strong>Martyr's Prayer:</strong> Betrayed and burned at the stake in 1536, Tyndale’s dying words were: <em>'Lord! Open the King of England’s eyes.'</em> By 1539, Henry VIII authorized the English *Great Bible* for every parish pulpit.</li>
+        <li><strong>Rising Literacy:</strong> Keith Wrightson notes literacy among yeomen rose from 45% in 1580 to over 60% by 1610. Reading Foxe’s *Book of Martyrs* created a deeply Protestant national identity.</li>
       </ul>
-      <details>
-        <summary>Art History (Ways of Seeing / Renaissance)</summary>
-        <div class="accordion-content">
-          <p style="font-weight:700; color:var(--crimson); margin-bottom:6px;">The Graphic Woodcut as Popular Weapon</p>
-          <ul>
-            <li>Observe the Foxe woodcut: graphic line art created an immediate, emotional visual narrative of martyrdom accessible even to illiterate and semi-literate commoners.</li>
-            <li>Contrast this cheap Protestant print culture with the opulent, gold-leaf Italianate altar paintings favored by Catholic counter-reformers.</li>
-          </ul>
+
+      <div class="protocol-step">Step 2: Specialist Fieldwork Inspection</div>
+      <div class="inspection-grid">
+        <div class="task-card art">
+          <div class="task-title">🎨 Art History Task: The Graphic Power of the Woodcut</div>
+          <div class="task-desc">
+            Examine the woodcut illustration from Foxe’s *Book of Martyrs*:
+            <ul>
+              <li><strong>Visual Storytelling:</strong> Notice the bold linework, the banner containing Tyndale's last words, and the dramatic execution scene.</li>
+              <li>How did cheap woodcut prints function as an accessible visual weapon for ordinary, semi-literate people compared to expensive oil paintings?</li>
+            </ul>
+          </div>
         </div>
-      </details>
-      <details>
-        <summary>Politics (British Constitution)</summary>
-        <div class="accordion-content">
-          <p style="font-weight:700; color:var(--navy); margin-bottom:6px;">Individual Conscience & The Public Sphere</p>
-          <ul>
-            <li>Placing vernacular bibles in ordinary households broke the spiritual monopoly of the Crown, fostering individual conscience.</li>
-            <li>This culture of private reading and public scriptural debate laid the ideological foundations for 17th-century civil liberties and radical democratic thought.</li>
-          </ul>
+        <div class="task-card politics">
+          <div class="task-title">⚖️ Politics Task: Freedom of Conscience & The Public Sphere</div>
+          <div class="task-desc">
+            Stand before the bronze statue of Tyndale with his hand on the printing press:
+            <ul>
+              <li><strong>Civil Liberties:</strong> How did placing an English Bible in every parish church empower individuals to interpret truth for themselves?</li>
+              <li>How does this relate to modern liberal concepts of freedom of speech and conscience?</li>
+            </ul>
+          </div>
         </div>
-      </details>
+      </div>
+
+      <div class="protocol-step">Step 3: Synthesis Street Debate</div>
       <div class="debate-box">
         <div class="debate-title">Street Debate Prompt</div>
-        <p>Did the widespread availability of the English Bible unite the nation under a shared Protestant culture, or permanently fracture it into religious conflict?</p>
+        <p>Did translating the Bible into English unite the kingdom under a common Protestant identity, or fracture it into permanent sectarian division?</p>
       </div>
+
       <div class="scribe-box">
         <div class="scribe-header">
           <div class="scribe-header-left">
@@ -1272,7 +1275,7 @@
           </div>
           <span class="scribe-status" id="save-status-10">Auto-saved to device</span>
         </div>
-        <textarea id="scribe-10" placeholder="Record group notes here..." oninput="saveNote(10)"></textarea>
+        <textarea id="scribe-10" placeholder="Record group discussion, physical observations, or speak using the Dictate button above..." oninput="saveNote(10)"></textarea>
       </div>
     </article>
 
@@ -1293,45 +1296,45 @@
         <div class="image-wrapper"><img src="Westminster%20and%20Whitehall/11.%20Westminster%20Hall.jpg" alt="Westminster Hall"><div class="image-caption">Interior of Westminster Hall showing Richard II's colossal hammerbeam timber roof</div></div>
         <div class="image-wrapper"><img src="Westminster%20and%20Whitehall/11.%20Star%20Chamber.jpg" alt="Star Chamber"><div class="image-caption">Tudor/Jacobean paneled judicial chamber typical of Westminster Palace courts</div></div>
       </div>
-      <div class="concept-box">
-        <div class="concept-title">Key Concept: High Treason & Common Law</div>
-        <div class="concept-desc">The highest crime against the Crown, expanded under Henry VIII’s 1534 Treason Act to include spoken words denying royal titles. The Hall housed the supreme courts of King’s Bench, Common Pleas, and Chancery.</div>
-      </div>
-      <div class="section-title">Historical Observations</div>
+
+      <div class="protocol-step">Step 1: Lead Historian Brief (Tudors 1C)</div>
       <ul class="notes-list">
-        <li>Dating to 1097 under William Rufus and given its spectacular hammerbeam timber roof by Richard II in the 1390s, this is the oldest surviving structure of the ancient palace.</li>
-        <li>Site of state treason trials: Sir Thomas More and Bishop John Fisher (1535), Anne Boleyn's alleged lovers (1536), Protector Somerset (1551), and the Duke of Northumberland (1553).</li>
-        <li>Keith Wrightson highlights an Elizabethan legal boom: common law suits at Westminster leaped from 5,300 in 1560 to 13,000 in 1580, showing that disputes were settled via central courts rather than feudal violence.</li>
-        <li><strong>Anne Boleyn's Coronation Banquet (1533) as Theatre of Power:</strong></li>
-        <li>• Senior nobles performed hereditary service: the Lord High Steward commanded mounted on a courser in crimson velvet.</li>
-        <li>• Anne sat under a golden Cloth of Estate; peeresses stood beside her to hold a cloth before her face if she needed to spit.</li>
-        <li>• 32 extravagant dishes were served in the first course (cranes, bitterns, godwits), with smaller portions allocated to lower social ranks.</li>
-        <li>• Henry VIII watched secretly from a side latticework window—an all-seeing monarch directing the display of dynastic legitimacy.</li>
+        <li><strong>Ancient Seat of Justice:</strong> Built in 1097 by William Rufus and re-roofed in the 1390s by Richard II, this hall housed the core common law courts (King's Bench, Common Pleas, Chancery).</li>
+        <li><strong>Treason Trials:</strong> The Tudor Crown tried its most dangerous political enemies here: Sir Thomas More and Bishop Fisher (1535), Anne Boleyn’s alleged lovers (1536), and the Duke of Northumberland (1553).</li>
+        <li><strong>Litigation Boom:</strong> Keith Wrightson reveals that lawsuits at Westminster jumped from 5,300 in 1560 to 13,000 by 1580, showing that the English gentry were settling property disputes through law rather than private violence.</li>
+        <li><strong>Anne Boleyn’s Feast (1533):</strong> Anne sat on an elevated throne served by nobles on horseback, with 32 dishes served in the first course alone, while Henry VIII watched privately from a concealed lattice window.</li>
       </ul>
-      <details>
-        <summary>Art History (Ways of Seeing / Renaissance)</summary>
-        <div class="accordion-content">
-          <p style="font-weight:700; color:var(--crimson); margin-bottom:6px;">The Hammerbeam Feat & Spatial Hierarchy</p>
-          <ul>
-            <li>Master carpenter Hugh Herland’s hammerbeam roof spans 68 feet without central pillars, using cantilevered horizontal beams decorated with carved wooden angels.</li>
-            <li>The ceiling symbolized the divine heavenly vault looking down upon earthly justice, visually reinforcing royal judicial authority.</li>
-          </ul>
+
+      <div class="protocol-step">Step 2: Specialist Fieldwork Inspection</div>
+      <div class="inspection-grid">
+        <div class="task-card art">
+          <div class="task-title">🎨 Art History Task: Structural Scale & The Hammerbeam Feat</div>
+          <div class="task-desc">
+            Examine images of Hugh Herland's timber roof:
+            <ul>
+              <li><strong>Structural Innovation:</strong> Spanning 68 feet without central columns, cantilevered hammerbeams transfer immense roof weight down through vertical walls.</li>
+              <li><strong>Gothic Iconography:</strong> Look at the carved wooden angels terminating each beam: how did this ceiling symbolize heaven watching over royal justice on earth?</li>
+            </ul>
+          </div>
         </div>
-      </details>
-      <details>
-        <summary>Politics (British Constitution)</summary>
-        <div class="accordion-content">
-          <p style="font-weight:700; color:var(--navy); margin-bottom:6px;">Judicial Interference vs. Judicial Independence</p>
-          <ul>
-            <li>Under the Tudors, judges served at the King's pleasure (*durante beneplacito*), allowing monarchs to dismiss uncooperative judges.</li>
-            <li>This vulnerability catalyzed the constitutional reforms of the 1701 Act of Settlement, which established full judicial tenure during good behavior.</li>
-          </ul>
+        <div class="task-card politics">
+          <div class="task-title">⚖️ Politics Task: Judicial Independence vs. State Terror</div>
+          <div class="task-desc">
+            Consider how trials were carried out in this space:
+            <ul>
+              <li><strong>Judicial Tenure:</strong> Under the Tudors, judges served 'at the King’s pleasure' and could be fired for ruling against the Crown.</li>
+              <li>How does this contrast with modern <span class="glossary-term" data-term="Judicial Independence" data-def="The principle that judges must be free from political control and dismissal by the executive.">judicial independence</span> established by the 1701 Act of Settlement?</li>
+            </ul>
+          </div>
         </div>
-      </details>
+      </div>
+
+      <div class="protocol-step">Step 3: Synthesis Street Debate</div>
       <div class="debate-box">
         <div class="debate-title">Street Debate Prompt</div>
-        <p>Were Tudor state treason trials legitimate exercises of common law, or staged theatrical spectacles designed to terrify political rivals?</p>
+        <p>Were Tudor treason trials in Westminster Hall genuine exercises of common law, or rigged theatrical spectacles designed to terrify potential rivals?</p>
       </div>
+
       <div class="scribe-box">
         <div class="scribe-header">
           <div class="scribe-header-left">
@@ -1340,7 +1343,7 @@
           </div>
           <span class="scribe-status" id="save-status-11">Auto-saved to device</span>
         </div>
-        <textarea id="scribe-11" placeholder="Record group notes here..." oninput="saveNote(11)"></textarea>
+        <textarea id="scribe-11" placeholder="Record group discussion, physical observations, or speak using the Dictate button above..." oninput="saveNote(11)"></textarea>
       </div>
     </article>
 
@@ -1359,44 +1362,44 @@
       <div class="gallery">
         <div class="image-wrapper"><img src="Westminster%20and%20Whitehall/12.%20Coronation%20Westminster%20Abbey.jpg" alt="Coronation Procession"><div class="image-caption">Engraving of Anne Boleyn’s elaborate royal coronation procession to the Abbey (1533)</div></div>
       </div>
-      <div class="concept-box">
-        <div class="concept-title">Key Concept: Royal Peculiar & Dynastic Legitimacy</div>
-        <div class="concept-desc">A church jurisdiction answering directly to the monarch rather than to a diocesan bishop. The Abbey served as the sacred stage where coronation oaths bound monarch, church, and realm.</div>
-      </div>
-      <div class="section-title">Historical Observations</div>
+
+      <div class="protocol-step">Step 1: Lead Historian Brief (Tudors 1C)</div>
       <ul class="notes-list">
-        <li>Surrendered in 1540 during the Dissolution of the Monasteries, Elizabeth I refounded it in 1560 as a <span class="glossary-term" data-term="Royal Peculiar" data-def="An ecclesiastical district exempt from the jurisdiction of diocesan bishops, answering directly to the monarch.">Royal Peculiar</span>.</li>
-        <li>All crowned Tudor monarchs except Henry VIII (Windsor) are interred here; Mary I and Elizabeth I share a single tomb built by James I.</li>
-        <li>Pietro Torrigiano’s Italian Renaissance bronze effigy of Henry VII and Elizabeth of York rests inside the English Perpendicular Gothic Lady Chapel.</li>
-        <li><strong>Anne Boleyn's Coronation Procession (Whitsunday, June 1, 1533):</strong></li>
-        <li>• A red carpet was unrolled over 300 yards between Westminster Hall and the Abbey High Altar.</li>
-        <li>• Six months pregnant, Anne wore purple velvet and kept her hair loose beneath a gold circlet—a visual convention reserved for virgin brides to signify purity.</li>
-        <li>• Archbishop Cranmer crowned her with the sacred Crown of St Edward—an unprecedented honor, as this relic was traditionally reserved solely for reigning monarchs.</li>
+        <li><strong>A Royal Peculiar:</strong> Surrendered in 1540 during the Dissolution of the Monasteries, Elizabeth I made the Abbey a <span class="glossary-term" data-term="Royal Peculiar" data-def="A church answering directly to the reigning monarch rather than to a diocesan bishop.">Royal Peculiar</span> in 1560, answering directly to the Crown.</li>
+        <li><strong>Tudor Necropolis:</strong> Henry VII, Elizabeth of York, Edward VI, Mary I, and Elizabeth I are all buried here (Henry VIII is buried at Windsor). Mary and Elizabeth share a single tomb constructed by James I.</li>
+        <li><strong>Anne Boleyn’s Coronation (1533):</strong> Anne walked a 300-yard red carpet from Westminster Hall. Six months pregnant, she wore purple velvet and kept her hair down like a virgin bride, and was crowned with St Edward's Crown—a relic normally reserved for reigning sovereigns.</li>
       </ul>
-      <details>
-        <summary>Art History (Ways of Seeing / Renaissance)</summary>
-        <div class="accordion-content">
-          <p style="font-weight:700; color:var(--crimson); margin-bottom:6px;">Torrigiano & The Florentine Renaissance</p>
-          <ul>
-            <li>Observe the collision of styles in the Lady Chapel: late medieval fan vaulting surrounds Pietro Torrigiano's classical Florentine tomb chest (completed 1518).</li>
-            <li>Torrigiano introduced pure Italian Renaissance naturalism, gilded bronze putti, and classical acanthus scrolls to Tudor England.</li>
-          </ul>
+
+      <div class="protocol-step">Step 2: Specialist Fieldwork Inspection</div>
+      <div class="inspection-grid">
+        <div class="task-card art">
+          <div class="task-title">🎨 Art History Task: The Italian Renaissance in Tudor England</div>
+          <div class="task-desc">
+            Consider the interior of the Lady Chapel (Henry VII Chapel):
+            <ul>
+              <li><strong>Collision of Styles:</strong> Look at the English late-medieval fan vaulting juxtaposed against Pietro Torrigiano's bronze-and-marble tomb of Henry VII and Elizabeth of York (1518).</li>
+              <li><strong>Florentine Naturalism:</strong> How do Torrigiano’s classical putti, acanthus scrolls, and naturalistic facial sculpting bring Italian High Renaissance humanism into England?</li>
+            </ul>
+          </div>
         </div>
-      </details>
-      <details>
-        <summary>Politics (British Constitution)</summary>
-        <div class="accordion-content">
-          <p style="font-weight:700; color:var(--navy); margin-bottom:6px;">The Coronation Oath as Constitutional Contract</p>
-          <ul>
-            <li>The coronation liturgy requires the sovereign to swear an oath to maintain the laws, customs, and Protestant religion established by law.</li>
-            <li>This ritual reinforces the principle that monarchical authority in England is conditional and bound by an uncodified constitutional contract.</li>
-          </ul>
+        <div class="task-card politics">
+          <div class="task-title">⚖️ Politics Task: The Coronation Oath as Contract</div>
+          <div class="task-desc">
+            Stand facing the West Front:
+            <ul>
+              <li><strong>Constitutional Compact:</strong> The coronation ritual requires the monarch to swear an oath to uphold the laws of the realm and maintain the Protestant Church of England.</li>
+              <li>How does this traditional service reflect an <span class="glossary-term" data-term="Uncodified Constitution" data-def="A constitution where fundamental rules and conventions are not written down in a single document.">uncodified constitutional</span> contract between Crown and citizens?</li>
+            </ul>
+          </div>
         </div>
-      </details>
+      </div>
+
+      <div class="protocol-step">Step 3: Synthesis Street Debate</div>
       <div class="debate-box">
         <div class="debate-title">Street Debate Prompt</div>
-        <p>Does the sacred coronation ritual reinforce genuine political loyalty, or merely disguise royal vulnerability and illegitimacy?</p>
+        <p>Does the grand sacred spectacle of a coronation create real political stability, or is it merely political theatre masking vulnerability?</p>
       </div>
+
       <div class="scribe-box">
         <div class="scribe-header">
           <div class="scribe-header-left">
@@ -1405,7 +1408,7 @@
           </div>
           <span class="scribe-status" id="save-status-12">Auto-saved to device</span>
         </div>
-        <textarea id="scribe-12" placeholder="Record group notes here..." oninput="saveNote(12)"></textarea>
+        <textarea id="scribe-12" placeholder="Record group discussion, physical observations, or speak using the Dictate button above..." oninput="saveNote(12)"></textarea>
       </div>
     </article>
 
@@ -1425,42 +1428,44 @@
         <div class="image-wrapper"><img src="Westminster%20and%20Whitehall/13.%20Jewel%20Tower.jpg" alt="Jewel Tower Cutaway"><div class="image-caption">Cutaway architectural diagram showing the three stone vaulted levels of the Jewel Tower</div></div>
         <div class="image-wrapper"><img src="Westminster%20and%20Whitehall/13.%20Jewel%20Tower%20and%20Abbey.jpg" alt="Jewel Tower and Abbey"><div class="image-caption">Aerial view of the Jewel Tower situated beside the medieval Palace of Westminster</div></div>
       </div>
-      <div class="concept-box">
-        <div class="concept-title">Key Concept: King-in-Parliament & The Paper State</div>
-        <div class="concept-desc">The supreme legislative body (Monarch, Lords, Commons). The Tower preserved parliamentary statutes, representing the early modern shift from personal royal decrees to written statute law.</div>
-      </div>
-      <div class="section-title">Historical Observations</div>
+
+      <div class="protocol-step">Step 1: Lead Historian Brief (Tudors 1C)</div>
       <ul class="notes-list">
-        <li>Built in 1365–1366 by Edward III as a fortified royal treasury surrounded by a freshwater moat fed by the Thames.</li>
-        <li>One of only two complete medieval buildings surviving from the Palace of Westminster (along with Westminster Hall) after the Great Fire of 1834.</li>
-        <li>Downgraded under Henry VIII after the court moved to Whitehall, an inventory in 1547 noted it held royal wardrobe items, linens, and dolls of Princesses Mary and Elizabeth.</li>
-        <li>Before 1600, it became the repository of the Clerk of the Parliaments; its fireproof stone vaults stored all original manuscript Acts of Parliament from the Tudors down to 1864.</li>
-        <li>This modest tower preserved the paper trail of the English state: the Break with Rome, the Elizabethan Settlement, and the Petition of Right.</li>
+        <li><strong>Medieval Survivor:</strong> Built in 1365–1366 by Edward III as a private royal treasury with its own moat, this is one of only two complete buildings from the medieval Palace of Westminster to survive the fire of 1834.</li>
+        <li><strong>From Jewels to Wardrobes:</strong> When Henry VIII moved the court to Whitehall, the tower lost its status; an inventory of 1547 shows it held clothes, furniture, and dolls belonging to Princesses Mary and Elizabeth.</li>
+        <li><strong>Birth of the Paper State:</strong> By 1600, it became the repository for the Clerk of the Parliaments. Its fireproof stone vaults stored all original manuscript Acts of Parliament from Henry VII's reign down to 1864.</li>
       </ul>
-      <details>
-        <summary>Art History (Ways of Seeing / Renaissance)</summary>
-        <div class="accordion-content">
-          <p style="font-weight:700; color:var(--crimson); margin-bottom:6px;">Utilitarian Military Vernacular</p>
-          <ul>
-            <li>Constructed of rugged Kentish ragstone with Reigate stone dressings, functional machicolations, and trefoil-headed windows.</li>
-            <li>Its defensive, vernacular architecture contrasts sharply with the classical balance of Inigo Jones’s Banqueting House just down the street.</li>
-          </ul>
+
+      <div class="protocol-step">Step 2: Specialist Fieldwork Inspection</div>
+      <div class="inspection-grid">
+        <div class="task-card art">
+          <div class="task-title">🎨 Art History Task: Utilitarian Vernacular & Defense</div>
+          <div class="task-desc">
+            Inspect the stone exterior of the tower:
+            <ul>
+              <li><strong>Materials & Form:</strong> Note the rough Kentish ragstone walls, Reigate stone dressings, and simple trefoil-headed windows.</li>
+              <li><strong>Functional Contrast:</strong> Contrast this fortress-like medieval masonry with Inigo Jones’s symmetrical Banqueting House up the road. How do materials reveal the changing purpose of royal buildings?</li>
+            </ul>
+          </div>
         </div>
-      </details>
-      <details>
-        <summary>Politics (British Constitution)</summary>
-        <div class="accordion-content">
-          <p style="font-weight:700; color:var(--navy); margin-bottom:6px;">The Preservation of Constitutional Precedent</p>
-          <ul>
-            <li>In an uncodified constitution, the preservation of original parliamentary statutes provides the precedent for the Rule of Law.</li>
-            <li>During the constitutional clashes of the 1620s and 1640s, parliamentarians cited these very manuscript records to resist Charles I’s arbitrary fiscal measures.</li>
-          </ul>
+        <div class="task-card politics">
+          <div class="task-title">⚖️ Politics Task: Statute Law & Constitutional Memory</div>
+          <div class="task-desc">
+            Consider the records stored inside this tower:
+            <ul>
+              <li><strong>Written Precedent:</strong> All Acts passed by <span class="glossary-term" data-term="King-in-Parliament" data-def="The sovereign legislative authority in the UK, consisting of the monarch, the House of Lords, and the House of Commons acting together.">King-in-Parliament</span> were stored here.</li>
+              <li>How did having an unshakeable written archive of past laws empower Parliament to resist the arbitrary power of Charles I?</li>
+            </ul>
+          </div>
         </div>
-      </details>
+      </div>
+
+      <div class="protocol-step">Step 3: Synthesis Street Debate</div>
       <div class="debate-box">
         <div class="debate-title">Street Debate Prompt</div>
-        <p>Which contributed more to British democracy: violent 17th-century civil wars, or the gradual accumulation of parliamentary statutes preserved in this tower?</p>
+        <p>Which contributed more to modern British democracy: violent armed civil war, or the gradual accumulation of written laws preserved in parliamentary archives?</p>
       </div>
+
       <div class="scribe-box">
         <div class="scribe-header">
           <div class="scribe-header-left">
@@ -1469,13 +1474,13 @@
           </div>
           <span class="scribe-status" id="save-status-13">Auto-saved to device</span>
         </div>
-        <textarea id="scribe-13" placeholder="Record group notes here..." oninput="saveNote(13)"></textarea>
+        <textarea id="scribe-13" placeholder="Record group discussion, physical observations, or speak using the Dictate button above..." oninput="saveNote(13)"></textarea>
       </div>
     </article>
 
   </main>
 
-  <!-- Glossary Popover (Tap-to-view) -->
+  <!-- Floating Glossary Popover Modal -->
   <aside class="glossary-popover" id="glossaryPopover">
     <div class="glossary-popover-header">
       <span class="glossary-popover-term" id="popoverTerm">Term</span>
@@ -1553,7 +1558,7 @@
   </div>
 
   <script>
-    // Safe LocalStorage Wrappers
+    // Safe LocalStorage
     const safeStore = {
       get: function(key) {
         try { return localStorage.getItem(key); } catch(e) { return null; }
@@ -1586,21 +1591,17 @@
     function showStop(num) {
       if (num < 1 || num > totalStops) return;
 
-      // Hide active stop
       const currentEl = document.getElementById('stop-' + currentStop);
       if (currentEl) currentEl.classList.remove('active');
 
       currentStop = num;
 
-      // Show new stop
       const newEl = document.getElementById('stop-' + currentStop);
       if (newEl) newEl.classList.add('active');
 
-      // Update Top Bar
       document.getElementById('barTitle').textContent = stopTitles[currentStop - 1];
       document.getElementById('barProgress').textContent = `Stop ${currentStop} of ${totalStops}`;
 
-      // Update Bottom Buttons
       document.getElementById('prevBtn').disabled = (currentStop === 1);
       const nextBtn = document.getElementById('nextBtn');
       if (currentStop === totalStops) {
@@ -1611,9 +1612,7 @@
         nextBtn.className = 'nav-btn';
       }
 
-      // Load saved notes for this stop
       loadNote(currentStop);
-
       renderDrawerList();
       closeGlossaryPopover();
       window.scrollTo(0, 0);
@@ -1805,7 +1804,7 @@
       URL.revokeObjectURL(link.href);
     }
 
-    // Accessibility
+    // Accessibility Settings
     function applyFont(fontClass) {
       document.body.classList.remove('font-system', 'font-atkinson', 'font-dyslexic');
       document.body.classList.add(fontClass);
@@ -1822,14 +1821,13 @@
       if (sel) sel.value = spacingClass;
     }
 
-    // Boot
+    // Reliable App Boot
     function init() {
       const savedFont = safeStore.get('walk_font_pref') || 'font-system';
       const savedSpacing = safeStore.get('walk_spacing_pref') || 'spacing-standard';
       applyFont(savedFont);
       applySpacing(savedSpacing);
 
-      // Load initial notes for Stop 1
       loadNote(1);
       renderDrawerList();
     }
